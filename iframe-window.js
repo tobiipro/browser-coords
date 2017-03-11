@@ -7,7 +7,6 @@ import __debug from '../../util/debug';
 import client from './client';
 import page from './page';
 import {
-  addToughEventListener,
   isIframeValid
 } from '../../util';
 
@@ -98,14 +97,11 @@ export let _onScrollDebounced = debounce(exports._onScroll);
 
 export let init = function() {
   if (window !== window.top) {
-    // unclear if this should be done to all addEventListener calls
-    addToughEventListener({
-      target: window,
-      type: 'message',
-      listener: exports._onIframeCoordsMessageDebounced,
-      options: {capture: true, passive: true},
-      maxSilentInterval: 10 * 1000
-    });
+    window.addEventListener(
+      'message',
+      exports._onIframeCoordsMessageDebounced,
+      {capture: true, passive: true}
+    );
   }
 
   window.addEventListener(
