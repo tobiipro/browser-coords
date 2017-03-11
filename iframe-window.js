@@ -38,10 +38,14 @@ export let _onIframeCoordsMessage = function(e) {
   page._zoom = zoom;
 };
 
-export let _sendIframeCoords = function({
+export let sendIframeCoords = function({
   boundingClientRect,
   iframeEl
 }) {
+  if (_.isUndefined(boundingClientRect)) {
+    boundingClientRect = iframeEl.getBoundingClientRect();
+  }
+
   let msg = {
     type: 'tobii-iframe-coords',
     content: {
@@ -54,26 +58,6 @@ export let _sendIframeCoords = function({
   };
 
   iframeEl.contentWindow.postMessage(msg, '*');
-};
-
-export let _onResize = function(_e) {
-  _.each(exports._inViewIframes, function(iframeEl) {
-    let boundingClientRect = iframeEl.getBoundingClientRect();
-    exports._sendIframeCoords({
-      boundingClientRect,
-      iframeEl
-    });
-  });
-};
-
-export let _onScroll = function(_e) {
-  _.each(exports._inViewIframes, function(iframeEl) {
-    let boundingClientRect = iframeEl.getBoundingClientRect();
-    exports._sendIframeCoords({
-      boundingClientRect,
-      iframeEl
-    });
-  });
 };
 
 // -----------------------------------------------------------------------------
@@ -89,10 +73,6 @@ export let _onIframeCoordsMessageDebounced = (function() {
   };
 })();
 
-export let _onResizeDebounced = debounce(exports._onResize);
-
-export let _onScrollDebounced = debounce(exports._onScroll);
-
 // -----------------------------------------------------------------------------
 
 export let init = function() {
@@ -103,18 +83,6 @@ export let init = function() {
       {capture: true, passive: true}
     );
   }
-
-  window.addEventListener(
-    'resize',
-    exports._onResizeDebounced,
-    {capture: true, passive: true}
-  );
-
-  window.addEventListener(
-    'scroll',
-    exports._onScrollDebounced,
-    {capture: true, passive: true}
-  );
 
   let threshold = [0.5];
   let io = new IntersectionObserver(function(entries) {
@@ -127,7 +95,7 @@ export let init = function() {
       if (entry.intersectionRatio > threshold[0]) {
         // iframe went inside client
         exports._inViewIframes.push(iframeEl);
-        exports._sendIframeCoords({
+        exports.sendIframeCoords({
           boundingClientRect,
           iframeEl
         });
