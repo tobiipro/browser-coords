@@ -92,6 +92,10 @@ export let init = function() {
         target: iframeEl
       } = entry;
 
+      if (!isIframeValid(iframeEl)) {
+        return;
+      }
+
       if (entry.intersectionRatio > threshold[0]) {
         // iframe went inside client
         exports._inViewIframes.push(iframeEl);
@@ -109,10 +113,6 @@ export let init = function() {
   });
 
   _.each(document.querySelectorAll('iframe'), function(iframeEl) {
-    if (!isIframeValid(iframeEl)) {
-      return;
-    }
-
     io.observe(iframeEl);
   });
 };
