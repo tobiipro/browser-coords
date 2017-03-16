@@ -84,7 +84,7 @@ export let init = function() {
     );
   }
 
-  let threshold = [0.5];
+  let thresholds = [0.5];
   let io = new IntersectionObserver(function(entries) {
     _.each(entries, function(entry) {
       let {
@@ -96,7 +96,7 @@ export let init = function() {
         return;
       }
 
-      if (entry.intersectionRatio > threshold[0]) {
+      if (entry.intersectionRatio > thresholds[0]) {
         // iframe went inside client
         exports._inViewIframes.push(iframeEl);
         exports.sendIframeCoords({
@@ -109,7 +109,7 @@ export let init = function() {
       }
     });
   }, {
-    threshold
+    threshold: thresholds
   });
 
   _.each(document.querySelectorAll('iframe'), function(iframeEl) {
