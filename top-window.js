@@ -12,7 +12,10 @@ let debounce = function(fn) {
   return _.debounce(
     fn,
     0.5 * 1000,
-    {maxWait: 1000, leading: true}
+    {
+      maxWait: 1000,
+      leading: true
+    }
   );
 };
 
@@ -115,7 +118,10 @@ export let init = function() {
     window.addEventListener(
       eventName,
       exports._onMouseEventDebounced,
-      {capture: true, passive: true}
+      {
+        capture: true,
+        passive: true
+      }
     );
   });
 
@@ -123,7 +129,10 @@ export let init = function() {
     window.addEventListener(
       eventName,
       exports._onTouchEventDebounced,
-      {capture: true, passive: true}
+      {
+        capture: true,
+        passive: true
+      }
     );
   });
 

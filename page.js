@@ -62,7 +62,10 @@ export let _guestimateZoom = function(_prevMouseE, _mouseE) {
 
   let closestZoom = _.reduce(exports._zooms, function(acc, zoom) {
     let abs = Math.abs(zoom - exactZoom);
-    return abs < acc.abs ? {abs, zoom} : acc;
+    return abs < acc.abs ? {
+      abs,
+      zoom
+    } : acc;
   }, {
     abs: Number.MAX_VALUE,
     zoom: exports.page._zoom

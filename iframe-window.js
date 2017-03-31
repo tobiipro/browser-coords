@@ -14,7 +14,10 @@ let debounce = function(fn) {
   return _.debounce(
     fn,
     0.5 * 1000,
-    {maxWait: 1000, leading: true}
+    {
+      maxWait: 1000,
+      leading: true
+    }
   );
 };
 
@@ -78,7 +81,10 @@ export let init = function() {
     window.addEventListener(
       'message',
       exports._onIframeCoordsMessageDebounced,
-      {capture: true, passive: true}
+      {
+        capture: true,
+        passive: true
+      }
     );
   }
 
@@ -106,9 +112,7 @@ export let init = function() {
         _.pull(exports._inViewIframes, iframeEl);
       }
     });
-  }, {
-    threshold: thresholds
-  });
+  }, {threshold: thresholds});
 
   _.each(document.querySelectorAll('iframe'), function(iframeEl) {
     io.observe(iframeEl);
