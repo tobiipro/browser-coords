@@ -5,10 +5,23 @@ import __debug from '../../util/debug';
 import client from './client';
 import page from './page';
 
+import {
+  roundRect
+} from '../index';
+
 let _debug = __debug(`tobii:atex:${__filename.replace(/\//g, ':')}`);
 
 let throttle = function(fn) {
   return _.throttle(fn, 0.1 * 1000);
+};
+
+export let _toJSON = function() {
+  return roundRect({
+    x: exports.window2.x(),
+    y: exports.window2.y(),
+    width: exports.window2.width(),
+    height: exports.window2.height()
+  });
 };
 
 // window relative to current screen
@@ -46,7 +59,9 @@ export let window2 = {
 
     // assume border on both left and right
     return _.max([0, _.floor(widthDiff / 2)]);
-  })
+  }),
+
+  toJSON: exports._toJSON
 };
 
 export default window2;

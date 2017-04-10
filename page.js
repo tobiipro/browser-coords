@@ -4,6 +4,14 @@ import _ from 'lodash';
 import __debug from '../../util/debug';
 import client from './client';
 
+import {
+  roundRect
+} from '../index';
+
+import {
+  recursiveParse as recursiveParseUrl
+} from '../url';
+
 let _debug = __debug(`tobii:atex:${__filename.replace(/\//g, ':')}`);
 
 let throttle = function(fn) {
@@ -74,6 +82,16 @@ export let _guestimateZoom = function(_prevMouseE, _mouseE) {
   exports.page._zoom = closestZoom;
 };
 
+export let _toJSON = function() {
+  return roundRect({
+    x: exports.page.x(),
+    y: exports.page.y(),
+    width: exports.page.width(),
+    height: exports.page.height(),
+    url: recursiveParseUrl(window.location.href)
+  });
+};
+
 // page relative to current screen
 // aka layout viewport, document
 export let page = {
@@ -110,7 +128,9 @@ export let page = {
   zoom: throttle(function() {
     exports._guestimateZoom();
     return exports.page._zoom;
-  })
+  }),
+
+  toJSON: exports._toJSON
 };
 
 export default page;
