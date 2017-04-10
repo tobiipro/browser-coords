@@ -15,7 +15,7 @@ import {
 let _debug = __debug(`tobii:atex:${__filename.replace(/\//g, ':')}`);
 
 let throttle = function(fn) {
-  return _.throttle(fn, 0.1 * 1000);
+  return _.throttle(fn, 1000);
 };
 
 export let _zooms = _.map([
