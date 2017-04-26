@@ -88,7 +88,8 @@ export let _toJSON = function() {
     y: exports.page.y(),
     width: exports.page.width(),
     height: exports.page.height(),
-    url: recursiveParseUrl(window.location.href)
+    url: recursiveParseUrl(window.location.href),
+    zoom: exports.page.zoom()
   });
 };
 
