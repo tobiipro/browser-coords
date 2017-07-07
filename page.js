@@ -91,18 +91,28 @@ export let _toJSON = function() {
   });
 };
 
-// page relative to current screen
+// page relative to window (top frame)
 // aka layout viewport, document
 export let page = {
   _zoom: 100,
+  _x: 0,
+  _y: 0,
 
-  x: throttle(function() {
-    return client.x() + client.scroll.x();
-  }),
+  x: function() {
+    if (window === window.top) {
+      return client._x;
+    }
 
-  y: throttle(function() {
-    return client.y() + client.scroll.y();
-  }),
+    return exports.page._x;
+  },
+
+  y: function() {
+    if (window === window.top) {
+      return client._y;
+    }
+
+    return exports.page._y;
+  },
 
   width: throttle(function() {
     return _.max([ // same as jQuery(document).width
