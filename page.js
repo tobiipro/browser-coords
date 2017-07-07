@@ -16,70 +16,6 @@ let throttle = function(fn) {
   return _.throttle(fn, 1000);
 };
 
-export let _zooms = _.map([
-  -3.75,
-  -3.35,
-  -2.5,
-  -1.65,
-  -1.25,
-  -0.5,
-  -0.25,
-  0,
-  0.25,
-  0.5,
-  1.25,
-  2.5,
-  3.75,
-  5,
-  7.5,
-  10,
-  15,
-  20
-], function(level) {
-  return 100 + 20 * level;
-});
-
-export let _guestimateZoom = function(_prevMouseE, _mouseE) {
-  if (window !== window.top) {
-    return;
-  }
-
-  // if (_.isUndefined(prevMouseE)) {
-  //   return;
-  // }
-
-  // let exactZoom =
-  //   100 *
-  //   (prevMouseE.clientX - mouseE.clientX) /
-  //   exports.screen.pixelRatio() /
-  //   (prevMouseE.screenX - mouseE.screenX);
-
-  let exactZoomH =
-    100 *
-    (window.outerWidth - client.x()) /
-    client.width();
-
-  let exactZoomV =
-    100 *
-    (window.outerHeight - client.y()) /
-    client.height();
-
-  let exactZoom = _.min([exactZoomH, exactZoomV]);
-
-  let closestZoom = _.reduce(exports._zooms, function(acc, zoom) {
-    let abs = Math.abs(zoom - exactZoom);
-    return abs < acc.abs ? {
-      abs,
-      zoom
-    } : acc;
-  }, {
-    abs: Number.MAX_VALUE,
-    zoom: exports.page._zoom
-  }).zoom;
-
-  exports.page._zoom = closestZoom;
-};
-
 export let _toJSON = function() {
   return roundRect({
     x: exports.page.x(),
@@ -134,10 +70,9 @@ export let page = {
     ]);
   }),
 
-  zoom: throttle(function() {
-    exports._guestimateZoom();
+  zoom: function() {
     return exports.page._zoom;
-  }),
+  },
 
   toJSON: exports._toJSON
 };
