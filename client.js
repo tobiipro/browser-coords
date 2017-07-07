@@ -30,13 +30,13 @@ export let client = {
   _x: 0,
   _y: 0,
 
-  x: throttle(function() {
+  x: function() {
     return exports.client._x;
-  }),
+  },
 
-  y: throttle(function() {
+  y: function() {
     return exports.client._y;
-  }),
+  },
 
   width: throttle(function() {
     return window.innerWidth;
