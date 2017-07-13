@@ -24,7 +24,7 @@ export let _toJSON = function() {
   });
 };
 
-// client relative to window
+// client relative to window | in screen px
 // aka visual viewport, viewport, client area
 export let client = {
   _x: 0,
