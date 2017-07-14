@@ -30,7 +30,7 @@ export let _toJSON = function() {
   });
 };
 
-// current screen
+// current screen | in device px
 export let screen = {
   width: throttle(function() {
     return window.screen.width;

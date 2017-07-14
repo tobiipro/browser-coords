@@ -27,7 +27,7 @@ export let _toJSON = function() {
   });
 };
 
-// page relative to window (top frame)
+// page relative to window (top frame) | in device px
 // aka layout viewport, document
 export let page = {
   _zoom: 100,

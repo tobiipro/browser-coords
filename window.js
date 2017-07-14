@@ -22,7 +22,7 @@ export let _toJSON = function() {
   });
 };
 
-// window relative to current screen
+// window relative to current screen | in device px
 export let window2 = {
   _borderSize: 0,
 
