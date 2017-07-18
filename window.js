@@ -18,13 +18,19 @@ export let _toJSON = function() {
     x: exports.window2.x(),
     y: exports.window2.y(),
     width: exports.window2.width(),
-    height: exports.window2.height()
+    height: exports.window2.height(),
+    viewport: {
+      x: exports.window2.viewport.x(),
+      y: exports.window2.viewport.y()
+    }
   });
 };
 
 // window relative to current screen | in device px
 export let window2 = {
   _borderSize: 0,
+  _viewportX: 0,
+  _viewportY: 0,
 
   x: throttle(function() {
     return window.screenX;
@@ -41,6 +47,24 @@ export let window2 = {
   height: throttle(function() {
     return window.outerHeight;
   }),
+
+  viewport: {
+    x: function() {
+      if (window === window.top) {
+        return client._x;
+      }
+
+      return exports.window2._viewportX;
+    },
+
+    y: function() {
+      if (window === window.top) {
+        return client._y;
+      }
+
+      return exports.window2._viewportY;
+    }
+  },
 
   borderSize: throttle(function() {
     // assume the window bottom border is the same as the horizontal ones

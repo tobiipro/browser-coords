@@ -31,23 +31,13 @@ export let _toJSON = function() {
 // aka layout viewport, document
 export let page = {
   _zoom: 100,
-  _x: 0,
-  _y: 0,
-
+  
   x: function() {
-    if (window === window.top) {
-      return client._x;
-    }
-
-    return exports.page._x;
+    return client._x - client.scroll.x();
   },
 
   y: function() {
-    if (window === window.top) {
-      return client._y;
-    }
-
-    return exports.page._y;
+    return client._y - client.scroll.y();
   },
 
   width: throttle(function() {
