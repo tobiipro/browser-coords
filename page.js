@@ -31,7 +31,7 @@ export let _toJSON = function() {
 // aka layout viewport, document
 export let page = {
   _zoom: 100,
-  
+
   x: function() {
     return client._x - client.scroll.x();
   },
