@@ -1,10 +1,8 @@
 import _ from 'lodash';
-import __debug from '../../util/debug';
+import _log from '../../log';
 import clientCoords from './client';
 import pageCoords from './page';
 import windowCoords from './window';
-
-let _debug = __debug(`tobii:atex:${__filename.replace(/\//g, ':')}`);
 
 export let _passive = {capture: true, passive: true};
 

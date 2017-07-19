@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import __debug from '../../util/debug';
+import _log from '../../log';
 import client from './client';
 
 import {
@@ -9,8 +9,6 @@ import {
 import {
   recursiveParse as recursiveParseUrl
 } from '../url';
-
-let _debug = __debug(`tobii:atex:${__filename.replace(/\//g, ':')}`);
 
 let throttle = function(fn) {
   return _.throttle(fn, 1000);

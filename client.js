@@ -1,11 +1,9 @@
 import _ from 'lodash';
-import __debug from '../../util/debug';
+import _log from '../../log';
 
 import {
   roundRect
 } from '../index';
-
-let _debug = __debug(`tobii:atex:${__filename.replace(/\//g, ':')}`);
 
 let throttle = function(fn) {
   return _.throttle(fn, 1000);
