@@ -19,10 +19,10 @@ export let _toJSON = function() {
     y: exports.window2.y(),
     width: exports.window2.width(),
     height: exports.window2.height(),
-    viewport: {
+    viewport: roundRect({
       x: exports.window2.viewport.x(),
       y: exports.window2.viewport.y()
-    }
+    })
   });
 };
 
