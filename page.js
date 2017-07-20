@@ -23,7 +23,7 @@ export let _toJSON = function() {
     width: exports.page.width(),
     height: exports.page.height(),
     url: recursiveParseUrl(window.location.href),
-    zoom: exports.page.zoom()
+    zoomPercentile: _.round(exports.page.zoom())
   });
 };
 
