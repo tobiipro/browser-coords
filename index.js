@@ -66,14 +66,12 @@ export let _onMouseEvent = function(e) {
   clientCoords._x = _.round(
     e.screenX -
     windowCoords.x() -
-    windowCoords.borderSize() -
     e.clientX * pageCoords.zoomPercentile() / 100
   );
 
   clientCoords._y = _.round(
     e.screenY -
     windowCoords.y() -
-    windowCoords.borderSize() -
     e.clientY * pageCoords.zoomPercentile() / 100
   );
 };
