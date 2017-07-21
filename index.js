@@ -31,7 +31,7 @@ export let _guestimateV = function() {
   // with no developer tools, no status bar
   let heightDiff =
     windowCoords.height() -
-    clientCoords.height() * pageCoords.zoom() / 100 -
+    clientCoords.height() * pageCoords.zoomPercentile() / 100 -
     windowCoords.borderSize();
 
   if (heightDiff > 125) {
@@ -50,13 +50,6 @@ export let _onMouseEvent = function(e) {
     return;
   }
 
-  // let prevE = exports._onMouseEvent.prev;
-  // exports._onMouseEvent.prev = e;
-  // let zoom = exports._guestimateZoom(prevE, e);
-  // if (!_.isUndefined(zoom)) {
-  //   exports.page._zoom = zoom;
-  // }
-
   if (!_.isUndefined(window.mozInnerScreenX)) {
     clientCoords._x = window.mozInnerScreenX;
     clientCoords._y = window.mozInnerScreenY;
@@ -74,14 +67,14 @@ export let _onMouseEvent = function(e) {
     e.screenX -
     windowCoords.x() -
     windowCoords.borderSize() -
-    e.clientX * pageCoords.zoom() / 100
+    e.clientX * pageCoords.zoomPercentile() / 100
   );
 
   clientCoords._y = _.round(
     e.screenY -
     windowCoords.y() -
     windowCoords.borderSize() -
-    e.clientY * pageCoords.zoom() / 100
+    e.clientY * pageCoords.zoomPercentile() / 100
   );
 };
 
