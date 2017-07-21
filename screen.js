@@ -67,7 +67,7 @@ export let screen = {
   },
 
   pixelRatio: throttle(function() {
-    return _.round(window.devicePixelRatio * 100 / page.zoomPercentile(), 1);
+    return _.round(window.devicePixelRatio * 100 / page.zoom(), 1);
   }),
 
   toJSON: exports._toJSON

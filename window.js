@@ -70,7 +70,7 @@ export let window2 = {
     // OSX, etc may have none
     let widthDiff =
       (exports.window2.width() - client.x()) -
-      client.width() * page.zoomPercentile() / 100;
+      client.width() * page.zoom() / 100;
 
     if (widthDiff > 25) {
       // assume Developer Tools is open vertically, and widthDiff cannot be trusted

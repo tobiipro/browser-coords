@@ -21,14 +21,14 @@ export let _toJSON = function() {
     width: exports.page.width(),
     height: exports.page.height(),
     url: recursiveParseUrl(window.location.href),
-    zoomPercentile: _.round(exports.page.zoomPercentile())
+    zoomPercentile: _.round(exports.page.zoom())
   });
 };
 
 // page relative to window (top frame) | in device px
 // aka layout viewport, document
 export let page = {
-  _zoomPercentile: 100,
+  _zoom: 100,
 
   x: function() {
     return client._x - client.scroll.x();
@@ -58,8 +58,8 @@ export let page = {
     ]);
   }),
 
-  zoomPercentile: function() {
-    return exports.page._zoomPercentile;
+  zoom: function() {
+    return exports.page._zoom;
   },
 
   toJSON: exports._toJSON
