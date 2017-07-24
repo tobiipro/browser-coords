@@ -21,7 +21,7 @@ export let _toJSON = function() {
     width: exports.page.width(),
     height: exports.page.height(),
     url: recursiveParseUrl(window.location.href),
-    zoomPercentile: _.round(exports.page.zoomFactor() * 100)
+    zoomFactorPercentile: _.round(exports.page.zoomFactor() * 100)
   });
 };
 
