@@ -47,10 +47,6 @@ export let _guestimateV = function() {
 
 
 export let _onMouseEvent = function(e) {
-  if (window !== window.top) {
-    return;
-  }
-
   if (!_.isUndefined(window.mozInnerScreenX)) {
     clientCoords._x = window.mozInnerScreenX;
     clientCoords._y = window.mozInnerScreenY;
