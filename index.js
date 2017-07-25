@@ -4,7 +4,10 @@ import clientCoords from './client';
 import pageCoords from './page';
 import windowCoords from './window';
 
-export let _passive = {capture: true, passive: true};
+export let _passive = {
+  capture: true,
+  passive: true
+};
 
 export let _mouseEventNames = [
   'click',
