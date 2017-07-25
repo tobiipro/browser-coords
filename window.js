@@ -56,7 +56,7 @@ export let window2 = {
     }
   },
 
-  borderSize: throttle(function() {
+  borderSize: function() {
     // assume the window bottom border is the same as the horizontal ones
     // see Window 7 window borders, or Windows 10 shadow borders
     // OSX, etc may have none
@@ -71,7 +71,7 @@ export let window2 = {
 
     // assume border on both left and right
     return _.max([0, _.floor(widthDiff / 2)]);
-  }),
+  },
 
   toJSON: exports._toJSON
 };
