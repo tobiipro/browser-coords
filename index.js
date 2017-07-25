@@ -22,8 +22,21 @@ export let _touchEventNames = [
 
 // -----------------------------------------------------------------------------
 
+export let _setClient = function({x, y}) {
+  if (!_.isUndefined(x)) {
+    clientCoords._x = x;
+    windowCoords._viewportX = x;
+  }
+
+  if (!_.isUndefined(y)) {
+    clientCoords._y = y;
+    windowCoords._viewportY = y;
+  }
+};
+
 export let _guestimateH = function() {
-  clientCoords._x = windowCoords.borderSize() / 2;
+  let x = windowCoords.borderSize() / 2;
+  exports._setClient({x});
 };
 
 export let _guestimateV = function() {
@@ -35,21 +48,23 @@ export let _guestimateV = function() {
     clientCoords.height() * pageCoords.zoomFactor() -
     windowCoords.borderSize();
 
+  // assume border only on top i.e. no status bar (guessing this is most common)
+  let y = heightDiff;
+
   if (heightDiff > 125) {
     // assume Developer Tools is open, and heightDiff cannot be trusted
     // assume no bookmark toolbar (guessing this is most common)
-    clientCoords._y = 75;
-    return;
+    y = 75;
   }
-  // assume border only on top i.e. no status bar (guessing this is most common)
-  clientCoords._y = heightDiff;
-};
 
+  exports._setClient({y});
+};
 
 export let _onMouseEvent = function(e) {
   if (!_.isUndefined(window.mozInnerScreenX)) {
-    clientCoords._x = window.mozInnerScreenX;
-    clientCoords._y = window.mozInnerScreenY;
+    let x = window.mozInnerScreenX;
+    let y = window.mozInnerScreenY;
+    exports._setClient({x, y});
     return;
   }
 
@@ -60,17 +75,19 @@ export let _onMouseEvent = function(e) {
     return;
   }
 
-  clientCoords._x = _.round(
+  let x = _.round(
     e.screenX -
     windowCoords.x() -
     e.clientX * pageCoords.zoomFactor()
   );
 
-  clientCoords._y = _.round(
+  let y = _.round(
     e.screenY -
     windowCoords.y() -
     e.clientY * pageCoords.zoomFactor()
   );
+
+  exports._setClient({x, y});
 };
 
 export let _onTouchEvent = function(e) {

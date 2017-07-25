@@ -48,18 +48,10 @@ export let window2 = {
 
   viewport: {
     x: function() {
-      if (window === window.top) {
-        return client._x;
-      }
-
       return exports.window2._viewportX;
     },
 
     y: function() {
-      if (window === window.top) {
-        return client._y;
-      }
-
       return exports.window2._viewportY;
     }
   },
