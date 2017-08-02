@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import _log from '../../log/local';
+import _log from '../../log';
 
 import {
   roundRect
