@@ -102,7 +102,7 @@ export let init = function() {
     return;
   }
 
-  _.each(exports._mouseEventNames, function(eventName) {
+  _.forEach(exports._mouseEventNames, function(eventName) {
     window.addEventListener(eventName, _.debounce(
       exports._onMouseEvent,
       0.5 * 1000,
@@ -110,7 +110,7 @@ export let init = function() {
     ), exports._passive);
   });
 
-  _.each(exports._touchEventNames, function(eventName) {
+  _.forEach(exports._touchEventNames, function(eventName) {
     window.addEventListener(eventName, _.debounce(
       exports._onTouchEvent,
       0.5 * 1000,
