@@ -2,6 +2,7 @@ import _ from 'lodash';
 import _log from '../../log';
 import client from './client';
 import page from './page';
+import screen from './screen';
 
 import {
   roundRect
@@ -31,28 +32,28 @@ export let window2 = {
   _viewportY: 0,
 
   x: throttle(function() {
-    return window.screenX;
+    return window.screenX * screen.pixelRatio();
   }),
 
   y: throttle(function() {
-    return window.screenY;
+    return window.screenY * screen.pixelRatio();
   }),
 
   width: throttle(function() {
-    return window.outerWidth;
+    return window.outerWidth * screen.pixelRatio();
   }),
 
   height: throttle(function() {
-    return window.outerHeight;
+    return window.outerHeight * screen.pixelRatio();
   }),
 
   viewport: {
     x: function() {
-      return exports.window2._viewportX;
+      return exports.window2._viewportX * screen.pixelRatio();
     },
 
     y: function() {
-      return exports.window2._viewportY;
+      return exports.window2._viewportY * screen.pixelRatio();
     }
   },
 

@@ -31,11 +31,11 @@ export let _toJSON = function() {
 // current screen | in device px
 export let screen = {
   width: throttle(function() {
-    return window.screen.width;
+    return window.screen.width * exports.screen.pixelRatio();
   }),
 
   height: throttle(function() {
-    return window.screen.height;
+    return window.screen.height * exports.screen.pixelRatio();
   }),
 
   available: {

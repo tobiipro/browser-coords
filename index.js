@@ -3,6 +3,7 @@ import _log from '../../log';
 import clientCoords from './client';
 import pageCoords from './page';
 import windowCoords from './window';
+import screenCoords from './screen';
 
 export let _passive = {
   capture: true,
@@ -77,13 +78,13 @@ export let _onMouseEvent = function(e) {
 
   let x = _.round(
     e.screenX -
-    windowCoords.x() -
+    (windowCoords.x() / screenCoords.pixelRatio()) -
     e.clientX * pageCoords.zoomFactor()
   );
 
   let y = _.round(
     e.screenY -
-    windowCoords.y() -
+    (windowCoords.y() / screenCoords.pixelRatio()) -
     e.clientY * pageCoords.zoomFactor()
   );
 
