@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import _log from '../../log';
 import client from './client';
+import screen from './screen';
 
 import {
   roundRect
@@ -45,7 +46,7 @@ export let page = {
       document.body.offsetWidth,
       document.documentElement.offsetWidth,
       document.documentElement.clientWidth
-    ]);
+    ]) * screen.osZoomFactor();
   }),
 
   height: throttle(function() {
@@ -55,7 +56,7 @@ export let page = {
       document.body.offsetHeight,
       document.documentElement.offsetHeight,
       document.documentElement.clientHeight
-    ]);
+    ]) * screen.osZoomFactor();
   }),
 
   zoomFactor: function() {

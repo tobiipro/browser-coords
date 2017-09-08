@@ -46,7 +46,7 @@ export let _guestimateV = function() {
   // with no developer tools, no status bar
   let heightDiff =
     windowCoords.height() -
-    clientCoords.height() * pageCoords.zoomFactor() -
+    clientCoords.height() -
     windowCoords.borderSize();
 
   // assume border only on top i.e. no status bar (guessing this is most common)
@@ -76,16 +76,17 @@ export let _onMouseEvent = function(e) {
     return;
   }
 
+  // bringing all to device pixels
   let x = _.round(
-    e.screenX -
-    (windowCoords.x() / screenCoords.pixelRatio()) -
-    e.clientX * pageCoords.zoomFactor()
+    e.screenX * screenCoords.osZoomFactor() -
+    windowCoords.x() -
+    e.clientX * screenCoords.osZoomFactor() * pageCoords.zoomFactor()
   );
 
   let y = _.round(
-    e.screenY -
-    (windowCoords.y() / screenCoords.pixelRatio()) -
-    e.clientY * pageCoords.zoomFactor()
+    e.screenY * screenCoords.osZoomFactor() -
+    windowCoords.y() -
+    e.clientY * screenCoords.osZoomFactor() * pageCoords.zoomFactor()
   );
 
   exports._setClient({x, y});

@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import _log from '../../log';
-import page from './page';
 
 import {
   roundRect
@@ -30,12 +29,14 @@ export let _toJSON = function() {
 
 // current screen | in device px
 export let screen = {
+  _pageZoomFactor: 1,
+
   width: throttle(function() {
-    return window.screen.width * exports.screen.pixelRatio();
+    return window.screen.width * exports.screen.osZoomFactor();
   }),
 
   height: throttle(function() {
-    return window.screen.height * exports.screen.pixelRatio();
+    return window.screen.height * exports.screen.osZoomFactor();
   }),
 
   available: {
@@ -67,7 +68,15 @@ export let screen = {
   },
 
   pixelRatio: throttle(function() {
-    return _.round(window.devicePixelRatio / page.zoomFactor(), 1);
+    return _.round(window.devicePixelRatio / exports.screen._pageZoomFactor, 2);
+  }),
+
+  osZoomFactor: throttle(function() {
+    if (_.includes(navigator.appVersion, 'Win')) {
+      return _.round(window.devicePixelRatio / exports.screen._pageZoomFactor, 2);
+    }
+
+    return 1;
   }),
 
   toJSON: exports._toJSON

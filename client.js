@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import _log from '../../log';
+import screen from './screen';
 
 import {
   roundRect
@@ -37,20 +38,20 @@ export let client = {
   },
 
   width: throttle(function() {
-    return window.innerWidth;
+    return window.innerWidth * screen.osZoomFactor();
   }),
 
   height: throttle(function() {
-    return window.innerHeight;
+    return window.innerHeight * screen.osZoomFactor();
   }),
 
   scroll: {
     x: throttle(function() {
-      return window.pageXOffset;
+      return window.pageXOffset * screen.osZoomFactor();
     }),
 
     y: throttle(function() {
-      return window.pageYOffset;
+      return window.pageYOffset * screen.osZoomFactor();
     })
   },
 

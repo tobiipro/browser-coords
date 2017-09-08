@@ -32,28 +32,28 @@ export let window2 = {
   _viewportY: 0,
 
   x: throttle(function() {
-    return window.screenX * screen.pixelRatio();
+    return window.screenX * screen.osZoomFactor();
   }),
 
   y: throttle(function() {
-    return window.screenY * screen.pixelRatio();
+    return window.screenY * screen.osZoomFactor();
   }),
 
   width: throttle(function() {
-    return window.outerWidth * screen.pixelRatio();
+    return window.outerWidth * screen.osZoomFactor();
   }),
 
   height: throttle(function() {
-    return window.outerHeight * screen.pixelRatio();
+    return window.outerHeight * screen.osZoomFactor();
   }),
 
   viewport: {
     x: function() {
-      return exports.window2._viewportX * screen.pixelRatio();
+      return exports.window2._viewportX * screen.osZoomFactor();
     },
 
     y: function() {
-      return exports.window2._viewportY * screen.pixelRatio();
+      return exports.window2._viewportY * screen.osZoomFactor();
     }
   },
 
@@ -63,7 +63,7 @@ export let window2 = {
     // OSX, etc may have none
     let widthDiff =
       (exports.window2.width() - client.x()) -
-      client.width() * page.zoomFactor();
+      client.width();
 
     if (widthDiff > 25) {
       // assume Developer Tools is open vertically, and widthDiff cannot be trusted
