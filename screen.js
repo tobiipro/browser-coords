@@ -41,19 +41,19 @@ export let screen = {
 
   available: {
     left: throttle(function() {
-      return window.screen.availLeft;
+      return window.screen.availLeft * exports.screen.osZoomFactor();
     }),
 
     top: throttle(function() {
-      return window.screen.availTop;
+      return window.screen.availTop * exports.screen.osZoomFactor();
     }),
 
     width: throttle(function() {
-      return window.screen.availWidth;
+      return window.screen.availWidth * exports.screen.osZoomFactor();
     }),
 
     height: throttle(function() {
-      return window.screen.availHeight;
+      return window.screen.availHeight * exports.screen.osZoomFactor();
     })
   },
 
