@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import _log from '../../log';
 import client from './client';
-import page from './page';
 import screen from './screen';
 
 import {
