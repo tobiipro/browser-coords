@@ -23,7 +23,8 @@ export let _toJSON = function() {
       angle: exports.screen.orientation.angle(),
       type: exports.screen.orientation.type()
     },
-    pixelRatioPercentile: _.round(exports.screen.pixelRatio() * 100)
+    pixelRatioPercentile: _.round(exports.screen.pixelRatio() * 100),
+    osZoomFactorPercentile: _.round(exports.screen.osZoomFactor() * 100)
   });
 };
 
