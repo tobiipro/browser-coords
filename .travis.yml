@@ -1,0 +1,25 @@
+branches:
+  except:
+    - /^v\d+\.\d+\.\d+/
+cache:
+  directories:
+    - /tmp/support-firecloud.cache
+    - $HOME/.local
+    - $HOME/.npm
+    - $HOME/.pip-cache/
+    - $HOME/Library/Caches/Homebrew
+    - node_modules
+before_install:
+  - support-firecloud/ci/linux-nosudo/bootstrap
+install:
+  - make deps
+script:
+  - make
+
+language:
+  - node_js
+node_js:
+  - node
+
+dist: trusty
+sudo: false
