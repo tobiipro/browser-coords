@@ -1,15 +1,12 @@
 import _ from 'lodash';
-import _log from '../../log';
+import cfg from './cfg';
 import client from './client';
 import screen from './screen';
 
 import {
-  roundRect
-} from '../index';
-
-let throttle = function(fn) {
-  return _.throttle(fn, 1000);
-};
+  roundRect,
+  throttle
+} from './util';
 
 export let _toJSON = function() {
   return roundRect({
@@ -17,6 +14,7 @@ export let _toJSON = function() {
     y: exports.window2.y(),
     width: exports.window2.width(),
     height: exports.window2.height(),
+
     viewport: roundRect({
       x: exports.window2.viewport.x(),
       y: exports.window2.viewport.y()
@@ -26,10 +24,6 @@ export let _toJSON = function() {
 
 // window relative to current screen | in device px
 export let window2 = {
-  _borderSize: 0,
-  _viewportX: 0,
-  _viewportY: 0,
-
   x: throttle(function() {
     return window.screenX * screen.osZoomFactor();
   }),
@@ -48,11 +42,11 @@ export let window2 = {
 
   viewport: {
     x: function() {
-      return exports.window2._viewportX * screen.osZoomFactor();
+      return cfg.window.viewport.x * screen.osZoomFactor();
     },
 
     y: function() {
-      return exports.window2._viewportY * screen.osZoomFactor();
+      return cfg.window.viewport.y * screen.osZoomFactor();
     }
   },
 
