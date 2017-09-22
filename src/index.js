@@ -1,9 +1,13 @@
 import _ from 'lodash';
-import _log from '../../log';
+import cfg from './cfg';
 import clientCoords from './client';
 import pageCoords from './page';
 import windowCoords from './window';
 import screenCoords from './screen';
+
+import {
+  throttle
+} from './util';
 
 export let _passive = {
   capture: true,
@@ -23,15 +27,17 @@ export let _touchEventNames = [
 
 // -----------------------------------------------------------------------------
 
-export let _setClient = function({x, y}) {
+export let _setClient = function({
+  x, y
+}) {
   if (!_.isUndefined(x)) {
-    clientCoords._x = x;
-    windowCoords._viewportX = x;
+    cfg.client.x = x;
+    cfg.window.viewport.x = x;
   }
 
   if (!_.isUndefined(y)) {
-    clientCoords._y = y;
-    windowCoords._viewportY = y;
+    cfg.client.y = y;
+    cfg.window.viewport.y = y;
   }
 };
 
@@ -58,7 +64,9 @@ export let _guestimateV = function() {
     y = 75;
   }
 
-  exports._setClient({y});
+  exports._setClient({
+    y
+  });
 };
 
 export let _onMouseEvent = function(e) {
@@ -70,9 +78,9 @@ export let _onMouseEvent = function(e) {
   }
 
   if (_.isUndefined(e.clientX) ||
-      _.isUndefined(e.clientY) ||
-      _.isUndefined(e.screenX) ||
-      _.isUndefined(e.screenY)) {
+    _.isUndefined(e.clientY) ||
+    _.isUndefined(e.screenX) ||
+    _.isUndefined(e.screenY)) {
     return;
   }
 
@@ -105,23 +113,31 @@ export let init = function() {
   }
 
   _.forEach(exports._mouseEventNames, function(eventName) {
-    window.addEventListener(eventName, _.debounce(
-      exports._onMouseEvent,
-      0.5 * 1000,
-      {maxWait: 1000, leading: true}
-    ), exports._passive);
+    window.addEventListener(
+      eventName,
+      throttle(exports._onMouseEvent),
+      exports._passive
+    );
   });
 
   _.forEach(exports._touchEventNames, function(eventName) {
-    window.addEventListener(eventName, _.debounce(
-      exports._onTouchEvent,
-      0.5 * 1000,
-      {maxWait: 1000, leading: true}
-    ), exports._passive);
+    window.addEventListener(
+      eventName,
+      throttle(exports._onTouchEvent),
+      exports._passive
+    );
   });
 
   exports._guestimateH();
   exports._guestimateV();
+};
+
+export {
+  cfg,
+  clientCoords as client,
+  pageCoords as page,
+  screenCoords as screen,
+  windowCoords as window
 };
 
 export default exports;

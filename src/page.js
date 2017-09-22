@@ -1,19 +1,12 @@
 import _ from 'lodash';
-import _log from '../../log';
+import cfg from './cfg';
 import client from './client';
 import screen from './screen';
 
 import {
-  roundRect
-} from '../index';
-
-import {
-  recursiveParse as recursiveParseUrl
-} from '../url';
-
-let throttle = function(fn) {
-  return _.throttle(fn, 1000);
-};
+  roundRect,
+  throttle
+} from './util';
 
 export let _toJSON = function() {
   return roundRect({
@@ -21,7 +14,8 @@ export let _toJSON = function() {
     y: exports.page.y(),
     width: exports.page.width(),
     height: exports.page.height(),
-    url: recursiveParseUrl(window.location.href),
+
+    url: exports.page.url(),
     zoomFactorPercentile: _.round(exports.page.zoomFactor() * 100)
   });
 };
@@ -29,14 +23,12 @@ export let _toJSON = function() {
 // page relative to window (top frame) | in device px
 // aka layout viewport, document
 export let page = {
-  _zoomFactor: 1,
-
   x: function() {
-    return client._x - client.scroll.x();
+    return client.x() - client.scroll.x();
   },
 
   y: function() {
-    return client._y - client.scroll.y();
+    return client.y() - client.scroll.y();
   },
 
   width: throttle(function() {
@@ -59,8 +51,12 @@ export let page = {
     ]) * screen.osZoomFactor();
   }),
 
+  url: throttle(function() {
+    return window.location.href;
+  }),
+
   zoomFactor: function() {
-    return exports.page._zoomFactor;
+    return cfg.page.zoomFactor;
   },
 
   toJSON: exports._toJSON
