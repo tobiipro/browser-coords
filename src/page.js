@@ -4,8 +4,8 @@ import client from './client';
 import screen from './screen';
 
 import {
-  roundRect,
-  throttle
+  maybeThrottle,
+  roundRect
 } from './util';
 
 export let _toJSON = function() {
@@ -31,7 +31,7 @@ export let page = {
     return client.y() - client.scroll.y();
   },
 
-  width: throttle(function() {
+  width: maybeThrottle(function() {
     return _.max([ // same as jQuery(document).width
       document.body.scrollWidth,
       document.documentElement.scrollWidth,
@@ -41,7 +41,7 @@ export let page = {
     ]) * screen.osZoomFactor();
   }),
 
-  height: throttle(function() {
+  height: maybeThrottle(function() {
     return _.max([ // same as jQuery(document).height
       document.body.scrollHeight,
       document.documentElement.scrollHeight,
@@ -51,7 +51,7 @@ export let page = {
     ]) * screen.osZoomFactor();
   }),
 
-  url: throttle(function() {
+  url: maybeThrottle(function() {
     return window.location.href;
   }),
 

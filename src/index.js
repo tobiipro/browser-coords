@@ -6,7 +6,7 @@ import windowCoords from './window';
 import screenCoords from './screen';
 
 import {
-  throttle
+  throttleDeeply
 } from './util';
 
 export let _passive = {
@@ -115,7 +115,7 @@ export let init = function() {
   _.forEach(exports._mouseEventNames, function(eventName) {
     window.addEventListener(
       eventName,
-      throttle(exports._onMouseEvent),
+      _.throttle(exports._onMouseEvent, 1000),
       exports._passive
     );
   });
@@ -123,13 +123,22 @@ export let init = function() {
   _.forEach(exports._touchEventNames, function(eventName) {
     window.addEventListener(
       eventName,
-      throttle(exports._onTouchEvent),
+      _.throttle(exports._onTouchEvent, 1000),
       exports._passive
     );
   });
 
   exports._guestimateH();
   exports._guestimateV();
+};
+
+export let throttle = function(wait) {
+  let throttled = _.omit(_.cloneDeep(exports), [
+    'throttle'
+  ]);
+
+  throttled = throttleDeeply(throttled, wait);
+  return throttled;
 };
 
 export {

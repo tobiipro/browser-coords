@@ -3,8 +3,8 @@ import cfg from './cfg';
 import screen from './screen';
 
 import {
-  roundRect,
-  throttle
+  maybeThrottle,
+  roundRect
 } from './util';
 
 export let _toJSON = function() {
@@ -32,20 +32,20 @@ export let client = {
     return cfg.client.y;
   },
 
-  width: throttle(function() {
+  width: maybeThrottle(function() {
     return window.innerWidth * screen.osZoomFactor();
   }),
 
-  height: throttle(function() {
+  height: maybeThrottle(function() {
     return window.innerHeight * screen.osZoomFactor();
   }),
 
   scroll: {
-    x: throttle(function() {
+    x: maybeThrottle(function() {
       return window.pageXOffset * screen.osZoomFactor();
     }),
 
-    y: throttle(function() {
+    y: maybeThrottle(function() {
       return window.pageYOffset * screen.osZoomFactor();
     })
   },

@@ -1,7 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 
 import _ from 'lodash';
-import cfg from './cfg';
 
 export let roundRect = function(obj, precision) {
   let keys = [
@@ -23,8 +22,25 @@ export let roundRect = function(obj, precision) {
   return obj;
 };
 
-export let throttle = function(fn) {
-  let throttledFn = _.throttle(fn, cfg.throttle);
-  throttledFn.now = fn;
-  return throttledFn;
+export let maybeThrottle = function(fn) {
+  fn.maybeThrottle = true;
+  return fn;
+};
+
+let deeply = function(fn) {
+  return function(obj, iteratee) {
+    return _.mapValues(obj, function(v, _name) {
+      return _.isPlainObject(v) ? deeply(fn)(v, iteratee) : fn(v, iteratee);
+    });
+  };
+};
+
+export let throttleDeeply = function(obj, wait) {
+  return exports.deeply(function(fn) {
+    if (!_.isFunction(fn) || !fn.maybeThrottle) {
+      return fn;
+    }
+
+    return _.throttle(fn, wait);
+  })(obj);
 };

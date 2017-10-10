@@ -4,8 +4,8 @@ import client from './client';
 import screen from './screen';
 
 import {
-  roundRect,
-  throttle
+  maybeThrottle,
+  roundRect
 } from './util';
 
 export let _toJSON = function() {
@@ -24,19 +24,19 @@ export let _toJSON = function() {
 
 // window relative to current screen | in device px
 export let window2 = {
-  x: throttle(function() {
+  x: maybeThrottle(function() {
     return window.screenX * screen.osZoomFactor();
   }),
 
-  y: throttle(function() {
+  y: maybeThrottle(function() {
     return window.screenY * screen.osZoomFactor();
   }),
 
-  width: throttle(function() {
+  width: maybeThrottle(function() {
     return window.outerWidth * screen.osZoomFactor();
   }),
 
-  height: throttle(function() {
+  height: maybeThrottle(function() {
     return window.outerHeight * screen.osZoomFactor();
   }),
 

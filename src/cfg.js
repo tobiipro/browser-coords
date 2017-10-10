@@ -18,9 +18,7 @@ export let cfg = {
   screen: {
     osZoomFactor: undefined,
     pixelRatio: undefined
-  },
-
-  throttle: 1000
+  }
 };
 
 export default cfg;
