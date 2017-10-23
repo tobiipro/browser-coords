@@ -2,8 +2,8 @@ import _ from 'lodash';
 import cfg from './cfg';
 import clientCoords from './client';
 import pageCoords from './page';
-import windowCoords from './window';
 import screenCoords from './screen';
+import windowCoords from './window';
 
 import {
   throttleDeeply
@@ -143,10 +143,11 @@ export let throttle = function(wait) {
 
 export {
   cfg,
-  clientCoords as client,
+
   pageCoords as page,
-  screenCoords as screen,
-  windowCoords as window
+  clientCoords as client,
+  windowCoords as window,
+  screenCoords as screen
 };
 
 export default exports;
