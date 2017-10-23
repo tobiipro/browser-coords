@@ -141,6 +141,15 @@ export let throttle = function(wait) {
   return throttled;
 };
 
+export let toJSON = function() {
+  return {
+    page: pageCoords.toJSON(),
+    client: clientCoords.toJSON(),
+    window: windowCoords.toJSON(),
+    screen: screenCoords.toJSON()
+  };
+};
+
 export {
   cfg,
 
