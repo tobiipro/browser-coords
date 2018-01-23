@@ -8,12 +8,12 @@
     "lodash": "4.17.4"
   },
   "devDependencies": {
-    "babel-cli": "6.24.1",
-    "babel-core": "6.25.0",
+    "babel-cli": "6.26.0",
+    "babel-core": "6.26.0",
     "babel-eslint": "7.2.3",
-    "babel-preset-firecloud": "git://github.com/tobiipro/babel-preset-firecloud.git#v0.0.3",
-    "babel-register": "6.24.1",
-    "babel-runtime": "6.23.0",
+    "babel-preset-firecloud": "git://github.com/tobiipro/babel-preset-firecloud.git#v0.0.4",
+    "babel-register": "6.26.0",
+    "babel-runtime": "6.26.0",
     "eclint": "2.3.0",
     "eslint": "4.1.0",
     "eslint-config-firecloud": "git://github.com/tobiipro/eslint-config-firecloud.git#v0.0.6",
