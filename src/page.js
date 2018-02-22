@@ -15,7 +15,6 @@ export let _toJSON = function() {
     width: exports.page.width(),
     height: exports.page.height(),
 
-    url: exports.page.url(),
     zoomFactorPercentile: _.round(exports.page.zoomFactor() * 100)
   });
 };
@@ -49,10 +48,6 @@ export let page = {
       document.documentElement.offsetHeight,
       document.documentElement.clientHeight
     ]) * screen.osZoomFactor();
-  }),
-
-  url: throttle(function() {
-    return window.location.href;
   }),
 
   zoomFactor: function() {
