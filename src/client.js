@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _ from 'lodash-firecloud';
 import cfg from './cfg';
 import screen from './screen';
 

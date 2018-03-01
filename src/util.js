@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 
-import _ from 'lodash';
+import _ from 'lodash-firecloud';
 import cfg from './cfg';
 
 export let roundRect = function(obj, precision) {
