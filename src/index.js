@@ -2,8 +2,8 @@ import _ from 'lodash-firecloud';
 import cfg from './cfg';
 import clientCoords from './client';
 import pageCoords from './page';
-import windowCoords from './window';
 import screenCoords from './screen';
+import windowCoords from './window';
 
 import {
   throttle

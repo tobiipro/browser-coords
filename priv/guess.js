@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _ from 'lodash-firecloud';
 
 export let _zoomPercentiles = _.map([
   -3.75,
