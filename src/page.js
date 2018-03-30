@@ -8,14 +8,14 @@ import {
   throttle
 } from './util';
 
-export let _toJSON = function() {
+export let toJSON = function() {
   return roundRect({
-    x: exports.page.x(),
-    y: exports.page.y(),
-    width: exports.page.width(),
-    height: exports.page.height(),
+    x: page.x(),
+    y: page.y(),
+    width: page.width(),
+    height: page.height(),
 
-    zoomFactorPercentile: _.round(exports.page.zoomFactor() * 100)
+    zoomFactorPercentile: _.round(page.zoomFactor() * 100)
   });
 };
 
@@ -54,7 +54,7 @@ export let page = {
     return cfg.page.zoomFactor;
   },
 
-  toJSON: exports._toJSON
+  toJSON
 };
 
 export default page;

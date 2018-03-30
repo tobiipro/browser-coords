@@ -9,25 +9,25 @@ import {
   throttle
 } from './util';
 
-export let _passive = {
+let _passive = {
   capture: true,
   passive: true
 };
 
-export let _mouseEventNames = [
+let _mouseEventNames = [
   'click',
   'dblclick',
   'mousemove',
   'wheel'
 ];
 
-export let _touchEventNames = [
+let _touchEventNames = [
   'touchstart'
 ];
 
 // -----------------------------------------------------------------------------
 
-export let _setClient = function({
+let _setClient = function({
   x, y
 }) {
   if (!_.isUndefined(x)) {
@@ -41,12 +41,12 @@ export let _setClient = function({
   }
 };
 
-export let _guestimateH = function() {
+let _guestimateH = function() {
   let x = windowCoords.borderSize() / 2;
-  exports._setClient({x});
+  _setClient({x});
 };
 
-export let _guestimateV = function() {
+let _guestimateV = function() {
   // Until the first mouse/touch event we can only guestimate.
   // A rough estimate with/out a bookmark toolbar is ~100/75px in popular browsers
   // with no developer tools, no status bar
@@ -64,16 +64,16 @@ export let _guestimateV = function() {
     y = 75;
   }
 
-  exports._setClient({
+  _setClient({
     y
   });
 };
 
-export let _onMouseEvent = function(e) {
+let _onMouseEvent = function(e) {
   if (!_.isUndefined(window.mozInnerScreenX)) {
     let x = window.mozInnerScreenX;
     let y = window.mozInnerScreenY;
-    exports._setClient({x, y});
+    _setClient({x, y});
     return;
   }
 
@@ -97,12 +97,12 @@ export let _onMouseEvent = function(e) {
     e.clientY * screenCoords.osZoomFactor() * pageCoords.zoomFactor()
   );
 
-  exports._setClient({x, y});
+  _setClient({x, y});
 };
 
-export let _onTouchEvent = function(e) {
+let _onTouchEvent = function(e) {
   // not 100% correct, but we're only interested in clientXY and screenXY
-  exports._onMouseEvent(e.touches[0]);
+  _onMouseEvent(e.touches[0]);
 };
 
 // -----------------------------------------------------------------------------
@@ -112,24 +112,24 @@ export let init = function() {
     return;
   }
 
-  _.forEach(exports._mouseEventNames, function(eventName) {
+  _.forEach(_mouseEventNames, function(eventName) {
     window.addEventListener(
       eventName,
-      throttle(exports._onMouseEvent),
-      exports._passive
+      throttle(_onMouseEvent),
+      _passive
     );
   });
 
-  _.forEach(exports._touchEventNames, function(eventName) {
+  _.forEach(_touchEventNames, function(eventName) {
     window.addEventListener(
       eventName,
-      throttle(exports._onTouchEvent),
-      exports._passive
+      throttle(_onTouchEvent),
+      _passive
     );
   });
 
-  exports._guestimateH();
-  exports._guestimateV();
+  _guestimateH();
+  _guestimateV();
 };
 
 export {

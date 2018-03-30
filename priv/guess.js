@@ -1,6 +1,6 @@
 import _ from 'lodash-firecloud';
 
-export let _zoomPercentiles = _.map([
+let _zoomPercentiles = _.map([
   -3.75,
   -3.35,
   -2.5,
@@ -63,3 +63,5 @@ export let guestimateZoomPercentile = function({
 
   return closestZoom;
 };
+
+export default exports;

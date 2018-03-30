@@ -6,53 +6,53 @@ import {
   throttle
 } from './util';
 
-export let _toJSON = function() {
+export let toJSON = function() {
   return roundRect({
-    width: exports.screen.width(),
-    height: exports.screen.height(),
+    width: screen.width(),
+    height: screen.height(),
 
     available: roundRect({
-      left: exports.screen.available.left(),
-      top: exports.screen.available.top(),
-      width: exports.screen.available.width(),
-      height: exports.screen.available.height()
+      left: screen.available.left(),
+      top: screen.available.top(),
+      width: screen.available.width(),
+      height: screen.available.height()
     }),
 
     orientation: {
-      angle: exports.screen.orientation.angle(),
-      type: exports.screen.orientation.type()
+      angle: screen.orientation.angle(),
+      type: screen.orientation.type()
     },
 
-    osZoomFactorPercentile: _.round(exports.screen.osZoomFactor() * 100),
-    pixelRatioPercentile: _.round(exports.screen.pixelRatio() * 100)
+    osZoomFactorPercentile: _.round(screen.osZoomFactor() * 100),
+    pixelRatioPercentile: _.round(screen.pixelRatio() * 100)
   });
 };
 
 // current screen | in device px
 export let screen = {
   width: throttle(function() {
-    return window.screen.width * exports.screen.osZoomFactor();
+    return window.screen.width * screen.osZoomFactor();
   }),
 
   height: throttle(function() {
-    return window.screen.height * exports.screen.osZoomFactor();
+    return window.screen.height * screen.osZoomFactor();
   }),
 
   available: {
     left: throttle(function() {
-      return window.screen.availLeft * exports.screen.osZoomFactor();
+      return window.screen.availLeft * screen.osZoomFactor();
     }),
 
     top: throttle(function() {
-      return window.screen.availTop * exports.screen.osZoomFactor();
+      return window.screen.availTop * screen.osZoomFactor();
     }),
 
     width: throttle(function() {
-      return window.screen.availWidth * exports.screen.osZoomFactor();
+      return window.screen.availWidth * screen.osZoomFactor();
     }),
 
     height: throttle(function() {
-      return window.screen.availHeight * exports.screen.osZoomFactor();
+      return window.screen.availHeight * screen.osZoomFactor();
     })
   },
 
@@ -72,7 +72,7 @@ export let screen = {
     }
 
     let osZoomFactor = window.devicePixelRatio /
-      (cfg.page.zoomFactor * exports.screen.pixelRatio());
+      (cfg.page.zoomFactor * screen.pixelRatio());
     return _.round(osZoomFactor, 2);
   }),
 
@@ -92,7 +92,7 @@ export let screen = {
     return _.round(pixelRatio, 2);
   }),
 
-  toJSON: exports._toJSON
+  toJSON
 };
 
 export default screen;

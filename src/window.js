@@ -8,16 +8,16 @@ import {
   throttle
 } from './util';
 
-export let _toJSON = function() {
+export let toJSON = function() {
   return roundRect({
-    x: exports.window2.x(),
-    y: exports.window2.y(),
-    width: exports.window2.width(),
-    height: exports.window2.height(),
+    x: window2.x(),
+    y: window2.y(),
+    width: window2.width(),
+    height: window2.height(),
 
     viewport: roundRect({
-      x: exports.window2.viewport.x(),
-      y: exports.window2.viewport.y()
+      x: window2.viewport.x(),
+      y: window2.viewport.y()
     })
   });
 };
@@ -55,7 +55,7 @@ export let window2 = {
     // see Window 7 window borders, or Windows 10 shadow borders
     // OSX, etc may have none
     let widthDiff =
-      (exports.window2.width() - client.x()) -
+      (window2.width() - client.x()) -
       client.width();
 
     if (widthDiff > 25) {
@@ -67,7 +67,7 @@ export let window2 = {
     return _.max([0, _.floor(widthDiff / 2)]);
   },
 
-  toJSON: exports._toJSON
+  toJSON
 };
 
 export default window2;

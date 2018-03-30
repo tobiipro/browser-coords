@@ -7,16 +7,16 @@ import {
   throttle
 } from './util';
 
-export let _toJSON = function() {
+export let toJSON = function() {
   return roundRect({
-    x: exports.client.x(),
-    y: exports.client.y(),
-    width: exports.client.width(),
-    height: exports.client.height(),
+    x: client.x(),
+    y: client.y(),
+    width: client.width(),
+    height: client.height(),
 
     scroll: roundRect({
-      x: exports.client.scroll.x(),
-      y: exports.client.scroll.y()
+      x: client.scroll.x(),
+      y: client.scroll.y()
     })
   });
 };
@@ -50,7 +50,7 @@ export let client = {
     })
   },
 
-  toJSON: exports._toJSON
+  toJSON
 };
 
 export default client;
