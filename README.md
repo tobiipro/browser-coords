@@ -139,5 +139,5 @@ so we throttle all APIs.
 [Apache 2.0](LICENSE)
 
 
-  [1]: https://travis-ci.org/tobiipro/browser-coords
-  [2]: https://travis-ci.org/tobiipro/browser-coords.svg?branch=master
+  [1]: https://travis-ci.com/tobiipro/browser-coords
+  [2]: https://travis-ci.com/tobiipro/browser-coords.svg?branch=master
