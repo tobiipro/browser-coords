@@ -1,7 +1,7 @@
 module.exports = {
   presets: [
     ['firecloud', {
-      'babel-preset-env': {
+      '@babel/preset-env': {
         targets: {
           browsers: [
             'last 2 Chrome versions'
