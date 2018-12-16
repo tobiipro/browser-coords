@@ -11,5 +11,7 @@ module.exports = {
     }]
   ],
 
-  sourceMaps: true
+  sourceMaps: true,
+
+  retainLines: true
 };
