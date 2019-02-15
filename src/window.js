@@ -64,7 +64,10 @@ export let window2 = {
     }
 
     // assume border on both left and right
-    return _.max([0, _.floor(widthDiff / 2)]);
+    return _.max([
+      0,
+      _.floor(widthDiff / 2)
+    ]);
   },
 
   toJSON

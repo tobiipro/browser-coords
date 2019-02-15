@@ -48,7 +48,10 @@ export let guestimateZoomPercentile = function({
       (window.outerHeight - client.y) /
       client.height;
 
-  let exactZoom = _.min([exactZoomH, exactZoomV]);
+  let exactZoom = _.min([
+    exactZoomH,
+    exactZoomV
+  ]);
 
   let closestZoom = _.reduce(exports._zoomPercentiles, function(acc, zoom) {
     let abs = Math.abs(zoom - exactZoom);
