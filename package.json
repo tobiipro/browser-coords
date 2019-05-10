@@ -4,6 +4,7 @@
   "description": "browser-coords gives access to screen, window, client and page coordinates.",
   "version": "0.1.3",
   "license": "Apache-2.0",
+  "module": "lib/index.js",
   "files": [
     "/BUILD",
     "/LICENSE",
