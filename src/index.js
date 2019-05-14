@@ -30,12 +30,12 @@ let _touchEventNames = [
 let _setClient = function({
   x, y
 }) {
-  if (!_.isUndefined(x)) {
+  if (_.isDefined(x)) {
     cfg.client.x = x;
     cfg.window.viewport.x = x;
   }
 
-  if (!_.isUndefined(y)) {
+  if (_.isDefined(y)) {
     cfg.client.y = y;
     cfg.window.viewport.y = y;
   }
@@ -70,7 +70,7 @@ let _guestimateV = function() {
 };
 
 let _onMouseEvent = function(e) {
-  if (!_.isUndefined(window.mozInnerScreenX)) {
+  if (_.isDefined(window.mozInnerScreenX)) {
     let x = window.mozInnerScreenX;
     let y = window.mozInnerScreenY;
     _setClient({x, y});

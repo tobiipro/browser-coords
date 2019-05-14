@@ -67,7 +67,7 @@ export let screen = {
   },
 
   osZoomFactor: throttle(function() {
-    if (!_.isUndefined(cfg.screen.osZoomFactor)) {
+    if (_.isDefined(cfg.screen.osZoomFactor)) {
       return cfg.screen.osZoomFactor;
     }
 
@@ -77,7 +77,7 @@ export let screen = {
   }),
 
   pixelRatio: throttle(function() {
-    if (!_.isUndefined(cfg.screen.pixelRatio)) {
+    if (_.isDefined(cfg.screen.pixelRatio)) {
       return cfg.screen.pixelRatio;
     }
 
