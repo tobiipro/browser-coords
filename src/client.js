@@ -4,7 +4,7 @@ import screen from './screen';
 
 import {
   roundRect,
-  throttle
+  shouldThrottle
 } from './util';
 
 export let toJSON = function() {
@@ -32,20 +32,20 @@ export let client = {
     return cfg.client.y;
   },
 
-  width: throttle(function() {
+  width: shouldThrottle(function() {
     return window.innerWidth * screen.osZoomFactor();
   }),
 
-  height: throttle(function() {
+  height: shouldThrottle(function() {
     return window.innerHeight * screen.osZoomFactor();
   }),
 
   scroll: {
-    x: throttle(function() {
+    x: shouldThrottle(function() {
       return window.pageXOffset * screen.osZoomFactor();
     }),
 
-    y: throttle(function() {
+    y: shouldThrottle(function() {
       return window.pageYOffset * screen.osZoomFactor();
     })
   },

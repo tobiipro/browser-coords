@@ -105,9 +105,26 @@ let _onTouchEvent = function(e) {
   _onMouseEvent(e.touches[0]);
 };
 
+let _maybeThrottle = function(maybeShouldThrottleFn) {
+  if (maybeShouldThrottleFn.shouldThrottle) {
+    return throttle(maybeShouldThrottleFn);
+  }
+
+  return maybeShouldThrottleFn;
+};
+
 // -----------------------------------------------------------------------------
 
 export let init = function() {
+  _.forEach([
+    clientCoords,
+    pageCoords,
+    screenCoords,
+    windowCoords
+  ], function(obj) {
+    _.merge(obj, _.mapValuesDeep(_maybeThrottle)(obj));
+  });
+
   if (window !== window.top) {
     return;
   }

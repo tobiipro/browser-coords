@@ -28,3 +28,7 @@ export let throttle = function(fn) {
   throttledFn.now = fn;
   return throttledFn;
 };
+
+export let shouldThrottle = function(fn) {
+  fn.shouldThrottle = true;
+};

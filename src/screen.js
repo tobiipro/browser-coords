@@ -3,7 +3,7 @@ import cfg from './cfg';
 
 import {
   roundRect,
-  throttle
+  shouldThrottle
 } from './util';
 
 export let toJSON = function() {
@@ -30,43 +30,43 @@ export let toJSON = function() {
 
 // current screen | in device px
 export let screen = {
-  width: throttle(function() {
+  width: shouldThrottle(function() {
     return window.screen.width * screen.osZoomFactor();
   }),
 
-  height: throttle(function() {
+  height: shouldThrottle(function() {
     return window.screen.height * screen.osZoomFactor();
   }),
 
   available: {
-    left: throttle(function() {
+    left: shouldThrottle(function() {
       return window.screen.availLeft * screen.osZoomFactor();
     }),
 
-    top: throttle(function() {
+    top: shouldThrottle(function() {
       return window.screen.availTop * screen.osZoomFactor();
     }),
 
-    width: throttle(function() {
+    width: shouldThrottle(function() {
       return window.screen.availWidth * screen.osZoomFactor();
     }),
 
-    height: throttle(function() {
+    height: shouldThrottle(function() {
       return window.screen.availHeight * screen.osZoomFactor();
     })
   },
 
   orientation: {
-    angle: throttle(function() {
+    angle: shouldThrottle(function() {
       return window.screen.orientation.angle;
     }),
 
-    type: throttle(function() {
+    type: shouldThrottle(function() {
       return window.screen.orientation.type;
     })
   },
 
-  osZoomFactor: throttle(function() {
+  osZoomFactor: shouldThrottle(function() {
     if (_.isDefined(cfg.screen.osZoomFactor)) {
       return cfg.screen.osZoomFactor;
     }
@@ -76,7 +76,7 @@ export let screen = {
     return _.round(osZoomFactor, 2);
   }),
 
-  pixelRatio: throttle(function() {
+  pixelRatio: shouldThrottle(function() {
     if (_.isDefined(cfg.screen.pixelRatio)) {
       return cfg.screen.pixelRatio;
     }

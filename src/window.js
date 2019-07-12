@@ -5,7 +5,7 @@ import screen from './screen';
 
 import {
   roundRect,
-  throttle
+  shouldThrottle
 } from './util';
 
 export let toJSON = function() {
@@ -24,19 +24,19 @@ export let toJSON = function() {
 
 // window relative to current screen | in device px
 export let window2 = {
-  x: throttle(function() {
+  x: shouldThrottle(function() {
     return window.screenX * screen.osZoomFactor();
   }),
 
-  y: throttle(function() {
+  y: shouldThrottle(function() {
     return window.screenY * screen.osZoomFactor();
   }),
 
-  width: throttle(function() {
+  width: shouldThrottle(function() {
     return window.outerWidth * screen.osZoomFactor();
   }),
 
-  height: throttle(function() {
+  height: shouldThrottle(function() {
     return window.outerHeight * screen.osZoomFactor();
   }),
 
