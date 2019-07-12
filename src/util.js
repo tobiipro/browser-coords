@@ -1,5 +1,3 @@
-/* eslint-disable import/prefer-default-export */
-
 import _ from 'lodash-firecloud';
 import cfg from './cfg';
 
@@ -33,3 +31,5 @@ export let shouldThrottle = function(fn) {
   fn.shouldThrottle = true;
   return fn;
 };
+
+export default exports;
