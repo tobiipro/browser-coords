@@ -31,4 +31,5 @@ export let throttle = function(fn) {
 
 export let shouldThrottle = function(fn) {
   fn.shouldThrottle = true;
+  return fn;
 };
