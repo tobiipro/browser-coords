@@ -41,12 +41,12 @@ let _setClient = function({
   }
 };
 
-let _guestimateH = function() {
+let _guestimateClientX = function() {
   let x = windowCoords.borderSize() / 2;
   _setClient({x});
 };
 
-let _guestimateV = function() {
+let _guestimateClientY = function() {
   // Until the first mouse/touch event we can only guestimate.
   // A rough estimate with/out a bookmark toolbar is ~100/75px in popular browsers
   // with no developer tools, no status bar
@@ -64,9 +64,7 @@ let _guestimateV = function() {
     y = 75;
   }
 
-  _setClient({
-    y
-  });
+  _setClient({y});
 };
 
 let _onMouseEvent = function(e) {
@@ -105,6 +103,34 @@ let _onTouchEvent = function(e) {
   _onMouseEvent(e.touches[0]);
 };
 
+let _maybeGuestimateClientXY = function() {
+  // for iframes, this information needs to be guestimated via different means
+  if (window !== window.top) {
+    return;
+  }
+
+  // less accurate method, but doesn't require a mouse/touch event
+  _guestimateClientX();
+  _guestimateClientY();
+
+  // more accurate method, requires at least one mouse/touch event
+  _.forEach(_mouseEventNames, function(eventName) {
+    window.addEventListener(
+      eventName,
+      throttle(_onMouseEvent),
+      _passive
+    );
+  });
+
+  _.forEach(_touchEventNames, function(eventName) {
+    window.addEventListener(
+      eventName,
+      throttle(_onTouchEvent),
+      _passive
+    );
+  });
+};
+
 let _maybeThrottle = function(maybeShouldThrottleFn) {
   if (maybeShouldThrottleFn.shouldThrottle) {
     return throttle(maybeShouldThrottleFn);
@@ -125,28 +151,7 @@ export let init = function() {
     _.merge(obj, _.mapValuesDeep(_maybeThrottle)(obj));
   });
 
-  if (window !== window.top) {
-    return;
-  }
-
-  _.forEach(_mouseEventNames, function(eventName) {
-    window.addEventListener(
-      eventName,
-      throttle(_onMouseEvent),
-      _passive
-    );
-  });
-
-  _.forEach(_touchEventNames, function(eventName) {
-    window.addEventListener(
-      eventName,
-      throttle(_onTouchEvent),
-      _passive
-    );
-  });
-
-  _guestimateH();
-  _guestimateV();
+  _maybeGuestimateClientXY();
 };
 
 export {

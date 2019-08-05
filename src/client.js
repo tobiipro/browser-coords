@@ -25,11 +25,11 @@ export let toJSON = function() {
 // aka visual viewport, viewport, client area
 export let client = {
   x: function() {
-    return cfg.client.x;
+    return _.defaultTo(cfg.client.x, 0);
   },
 
   y: function() {
-    return cfg.client.y;
+    return _.defaultTo(cfg.client.y, 0);
   },
 
   width: shouldThrottle(function() {

@@ -42,11 +42,11 @@ export let window2 = {
 
   viewport: {
     x: function() {
-      return cfg.window.viewport.x * screen.osZoomFactor();
+      return _.defaultTo(cfg.window.viewport.x, 0) * screen.osZoomFactor();
     },
 
     y: function() {
-      return cfg.window.viewport.y * screen.osZoomFactor();
+      return _.defaultTo(cfg.window.viewport.y, 0) * screen.osZoomFactor();
     }
   },
 

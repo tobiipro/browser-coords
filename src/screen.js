@@ -66,6 +66,7 @@ export let screen = {
     })
   },
 
+  // Windows: it's the same thing as DPI zoom (usually between 100-200%%)
   osZoomFactor: shouldThrottle(function() {
     if (_.isDefined(cfg.screen.osZoomFactor)) {
       return cfg.screen.osZoomFactor;

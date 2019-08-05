@@ -51,7 +51,7 @@ export let page = {
   }),
 
   zoomFactor: function() {
-    return cfg.page.zoomFactor;
+    return _.defaultTo(cfg.page.zoomFactor, 1);
   },
 
   toJSON
