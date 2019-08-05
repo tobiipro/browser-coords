@@ -13,6 +13,7 @@ export let cfg = {
   },
 
   window: {
+    borderSize: undefined,
     viewport: {
       x: undefined,
       y: undefined

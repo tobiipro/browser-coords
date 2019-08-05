@@ -51,6 +51,10 @@ export let window2 = {
   },
 
   borderSize: function() {
+    if (_.isDefined(cfg.window.borderSize)) {
+      return cfg.window.borderSize;
+    }
+
     // assume the window bottom border is the same as the horizontal ones
     // see Window 7 window borders, or Windows 10 shadow borders
     // OSX, etc may have none
