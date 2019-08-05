@@ -47,9 +47,9 @@ let updateClientPageCfg = function(cfg = {}) {
   _.merge(browserCoords.cfg, cfg);
 };
 
-if (window === window.top) {
-  browserCoords.init();
+browserCoords.init();
 
+if (window === window.top) {
   // guess or get via a WebExtension
   browserCoords.cfg.page.zoomFactor = undefined;
 } else {
