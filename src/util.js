@@ -22,7 +22,7 @@ export let roundRect = function(obj, precision) {
 };
 
 export let throttle = function(fn) {
-  let throttledFn = _.throttle(fn, cfg.throttle);
+  let throttledFn = _.onceIn(fn, cfg.throttle);
   throttledFn.now = fn;
   return throttledFn;
 };
