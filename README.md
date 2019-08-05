@@ -77,6 +77,17 @@ setInterval(function() {
     'screen'
   ]), null, 2);
 }, 1000);
+
+// convert screen coordinates to client/page coordinates via
+
+let someCoords = {
+  screenX: 100,
+  screenY: 100
+};
+browser.screenToClientPage(someCoords);
+// someCoords now has extra properties
+// clientX, clientY, pageX, pageY
+
 ```
 
 
@@ -89,6 +100,7 @@ Those multipliers make up the value of `window.devicePixelRatio`:
 
 Those multipliers are reflected in `browser-coords`
 as `screen.pixelRatio() * screen.osZoomFactor() * page.zoomFactor()`.
+
 
 ## Page zoom
 

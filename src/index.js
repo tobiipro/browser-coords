@@ -3,6 +3,7 @@ import cfg from './cfg';
 import clientCoords from './client';
 import pageCoords from './page';
 import screenCoords from './screen';
+import screenToClientPage from './screen-to-client-page';
 import windowCoords from './window';
 
 import {
@@ -159,6 +160,7 @@ export {
   clientCoords as client,
   pageCoords as page,
   screenCoords as screen,
+  screenToClientPage,
   windowCoords as window
 };
 
