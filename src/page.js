@@ -14,7 +14,7 @@ export let toJSON = function() {
     y: page.y(),
     width: page.width(),
     height: page.height(),
-
+    url: window.location.href,
     zoomFactorPercentile: _.round(page.zoomFactor() * 100)
   });
 };
