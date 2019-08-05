@@ -22,7 +22,8 @@ export let roundRect = function(obj, precision) {
 };
 
 export let throttle = function(fn) {
-  let throttledFn = _.onceIn(fn, cfg.throttle);
+  let interval = _.defaultTo(cfg.throttle, 0);
+  let throttledFn = _.onceIn(fn, interval);
   throttledFn.now = fn;
   return throttledFn;
 };

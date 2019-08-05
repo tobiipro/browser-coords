@@ -119,12 +119,10 @@ but the distinction is important in order to get the real screen resolution.
 
 ## Throttling
 
-We currently throttle reading the values at 1000ms = 1s, in order to gain some performance.
-
 As you can check for yourself [here](https://jsperf.com/coords),
 some of the APIs are not performant.
 Unfortunately the behaviour doesn't seem uniform across browsers and operating systems,
-so we throttle all APIs.
+so we added the ability to throttle all APIs.
 
 
 ## References

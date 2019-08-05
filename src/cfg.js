@@ -28,7 +28,7 @@ export let cfg = {
     pixelRatio: undefined
   },
 
-  throttle: 1000
+  throttle: undefined
 };
 
 export default cfg;
