@@ -1,4 +1,4 @@
-import _ from 'lodash-firecloud';
+let _ = require('lodash-firecloud');
 
 let _zoomPercentiles = _.map([
   -3.75,
@@ -23,10 +23,10 @@ let _zoomPercentiles = _.map([
   return 100 + 20 * level;
 });
 
-export let guessZoomPercentile = function({
+let guessZoomPercentile = function({
   client = {},
   osZoomFactor = 1
-}) {
+} = {}) {
   if (window !== window.top) {
     return 100;
   }
@@ -67,4 +67,4 @@ export let guessZoomPercentile = function({
   return closestZoom;
 };
 
-export default guessZoomPercentile;
+module.exports = guessZoomPercentile;
