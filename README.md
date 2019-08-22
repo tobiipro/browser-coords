@@ -65,94 +65,9 @@
 }
 ```
 
-
 ## Example
 
-```javascript
-// top-window
-
-import _ from 'lodash';
-import browserCoords from 'browser-coords';
-
-// optional function, since browser-coords will guess these
-let updateCfg = function(cfg = {}) {
-  // NOTE: the following structure is just for documentation purposes
-  _.merge(cfg, {
-    screen: {
-      osZoomFactor: undefined,
-      pixelRatio: undefined
-    },
-
-    window: {
-      viewport: {
-        x: undefined,
-        y: undefined
-      }
-      borderSize: undefined
-    }
-  });
-
-  _.merge(browserCoords.cfg, cfg);
-};
-
-let updateClientPageCfg = function(cfg = {}) {
-  // NOTE: the following structure is just for documentation purposes
-  _.merge(cfg, {
-    client: {
-      x: undefined,
-      y: undefined
-    },
-
-    page: {
-      zoomFactor: undefined // guess or get from a WebExtension
-    },
-  });
-
-  _.merge(browserCoords.cfg, cfg);
-};
-
-browserCoords.init();
-
-if (window === window.top) {
-  // guess or get via a WebExtension
-  browserCoords.cfg.page.zoomFactor = undefined;
-} else {
-  // in an iframe, you need to figure out where the iframe is
-  // via iframeElement.getBoundingClientRect() in the parent window
-  // and send that information over to the iframe,
-  // maybe via iframeElement.contentWindow.postMessage(),
-  // and call updateClientPageCfg()
-
-  window.addEventListener('message', function(e) {
-    if (!e.data || !e.data.browserCoordsIframeCfg) {
-      return;
-    }
-
-    updateClientPageCfg(e.data.browserCoordsIframeCfg);
-  });
-}
-
-setInterval(function() {
-  document.body.innerHTML = JSON.stringify(_.pick(browserCoords, [
-    'cfg',
-    'page',
-    'client',
-    'window',
-    'screen'
-  ]), null, 2);
-}, 1000);
-
-// convert screen coordinates to client/page coordinates via
-
-let someCoords = {
-  screenX: 100,
-  screenY: 100
-};
-browser.screenToClient(someCoords);
-// someCoords now has extra properties
-// clientX, clientY
-
-```
+See the [demo code](priv/demo.js).
 
 
 ## `window.devicePixelRatio`

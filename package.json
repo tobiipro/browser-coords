@@ -14,6 +14,7 @@
     "/lib/"
   ],
   "dependencies": {
+    "browserify": "^16.5.0",
     "lodash-firecloud": "git://github.com/tobiipro/lodash-firecloud.git#semver:~0.4.0"
   },
   "devDependencies": {

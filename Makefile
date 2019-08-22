@@ -11,4 +11,11 @@ include support-firecloud/repo/mk/js.publish.npg.mk
 
 # ------------------------------------------------------------------------------
 
+SF_BUILD_TARGETS := \
+	$(SF_BUILD_TARGETS) \
+	priv/demo.browserify.js
+
 # ------------------------------------------------------------------------------
+
+priv/demo.browserify.js: priv/demo.js
+	$(BROWSERIFY) $< -o $@
