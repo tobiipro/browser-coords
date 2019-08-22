@@ -1,6 +1,58 @@
 # browser-coords [![Build Status][2]][1]
 
-`browser-coords` gives access to screen, window, client and page coordinates in device pixels.
+`browser-coords` gives access to screen, window, client and page coordinates **in device pixels**, with the following API (all except `cfg` are functions to call):
+
+```javascript
+{
+  // configuration object, see example below
+  cfg,
+
+  // current screen
+  screen: {
+    width,
+    height,
+
+    available: {left, top, width, height},
+    orientation: {angle, type},
+    osZoomFactorPercentile,
+    pixelRatioPercentile
+  },
+
+  // browser window
+  // coordinates relative to screen
+  window: {
+    x,
+    y,
+    width,
+    height,
+
+    viewport: {x, y}, // browser window + chrome + borderSize (address bar, left sidebar)
+    borderSize // Windows
+  },
+
+  // client/visual-viewport/viewport/client-area of the top/iframe
+  // coordinates relative to browser window
+  client: {
+    x,
+    y,
+    width,
+    height,
+
+    scroll: {x, y}
+  },
+  
+  // page/layout-viewport/document
+  // coordinates relative to browser window
+  page: {
+    x,
+    y,
+    width,
+    height,
+
+    zoomFactor
+  }
+}
+```
 
 
 ## Example
@@ -15,16 +67,17 @@ import browserCoords from 'browser-coords';
 let updateCfg = function(cfg = {}) {
   // NOTE: the following structure is just for documentation purposes
   _.merge(cfg, {
+    screen: {
+      osZoomFactor: undefined,
+      pixelRatio: undefined
+    },
+
     window: {
       viewport: {
         x: undefined,
         y: undefined
       }
-    },
-
-    screen: {
-      osZoomFactor: undefined,
-      pixelRatio: undefined
+      borderSize: undefined
     }
   });
 
@@ -34,14 +87,14 @@ let updateCfg = function(cfg = {}) {
 let updateClientPageCfg = function(cfg = {}) {
   // NOTE: the following structure is just for documentation purposes
   _.merge(cfg, {
-    page: {
-      zoomFactor: undefined // guess or get from a WebExtension
-    },
-
     client: {
       x: undefined,
       y: undefined
-    }
+    },
+
+    page: {
+      zoomFactor: undefined // guess or get from a WebExtension
+    },
   });
 
   _.merge(browserCoords.cfg, cfg);
