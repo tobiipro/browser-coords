@@ -10,10 +10,13 @@ import {
 
 export let toJSON = function() {
   return roundRect({
+    cfg: page.cfg,
+
     x: page.x(),
     y: page.y(),
     width: page.width(),
     height: page.height(),
+
     url: window.location.href,
     zoomFactorPercentile: _.round(page.zoomFactor() * 100)
   });
@@ -22,6 +25,8 @@ export let toJSON = function() {
 // page aka layout viewport, document
 // coordinates in device px relative to client
 export let page = {
+  cfg: cfg.page,
+
   x: function() {
     return 0 - client.scroll.x();
   },

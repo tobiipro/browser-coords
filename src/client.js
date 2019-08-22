@@ -9,6 +9,8 @@ import {
 
 export let toJSON = function() {
   return roundRect({
+    cfg: client.cfg,
+
     x: client.x(),
     y: client.y(),
     width: client.width(),
@@ -25,6 +27,8 @@ export let toJSON = function() {
 // client aka visual-viewport/viewport/client-area of the top/iframe
 // coordinates in device px relative to browser window
 export let client = {
+  cfg: cfg.client,
+
   x: function() {
     return _.defaultTo(cfg.client.x, 0);
   },

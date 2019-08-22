@@ -10,6 +10,8 @@
   // current screen
   // coordinates in device px
   screen: {
+    cfg,
+
     width,
     height,
 
@@ -22,6 +24,8 @@
   // browser window
   // coordinates in device px relative to screen
   window: {
+    cfg,
+
     x,
     y,
     width,
@@ -34,6 +38,8 @@
   // client aka visual-viewport/viewport/client-area of the top/iframe
   // coordinates in device px relative to browser window
   client: {
+    cfg,
+
     x,
     y,
     width,
@@ -46,6 +52,8 @@
   // page aka layout-viewport/document
   // coordinates in device px relative to client
   page: {
+    cfg,
+
     x,
     y,
     width,

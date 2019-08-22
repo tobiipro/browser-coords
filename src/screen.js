@@ -8,6 +8,8 @@ import {
 
 export let toJSON = function() {
   return roundRect({
+    cfg: screen.cfg,
+
     width: screen.width(),
     height: screen.height(),
 
@@ -31,6 +33,8 @@ export let toJSON = function() {
 // current screen
 // coordinates in device px
 export let screen = {
+  cfg: cfg.screen,
+
   width: shouldThrottle(function() {
     return window.screen.width * screen.osZoomFactor();
   }),
