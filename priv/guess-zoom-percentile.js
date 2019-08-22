@@ -23,7 +23,7 @@ let _zoomPercentiles = _.map([
   return 100 + 20 * level;
 });
 
-export let guestimateZoomPercentile = function({
+export let guessZoomPercentile = function({
   client = {},
   osZoomFactor = 1
 }) {
@@ -67,4 +67,4 @@ export let guestimateZoomPercentile = function({
   return closestZoom;
 };
 
-export default exports;
+export default guessZoomPercentile;

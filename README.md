@@ -171,7 +171,7 @@ as `screen.pixelRatio() * screen.osZoomFactor() * page.zoomFactor()`.
 One of them is the page zoom that the user sets via the browser.
 
 It is close to impossible to get the page zoom from within the web page,
-but [priv/guess-zoom.js](priv/guess-zoom.js) is a proof of concept to guess it.
+but [priv/guess-zoom-percentile.js](priv/guess-zoom-percentile.js) is a proof of concept to guess it.
 
 The only way to get the real value is via a WebExtension
 and the [tabs.getZoom()](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/getZoom) API.
