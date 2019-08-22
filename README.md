@@ -4,6 +4,9 @@
 
 ```javascript
 {
+  // convert {screenX, screenY} coords to {clientX, clientY} coords
+  screenToClient,
+
   // configuration object, see example below
   cfg,
 
