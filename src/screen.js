@@ -78,7 +78,10 @@ export let screen = {
 
     if (_.includes(navigator.appVersion, 'Win')) {
       // it's the same thing as DPI zoom (usually between 100-200%%)
-      let pixelRatio = window.devicePixelRatio / cfg.page.zoomFactor;
+
+      // not using pageCoords.zoomFactor() to avoid circular dependency
+      let pageZoomFactor = _.defaultTo(cfg.page.zoomFactor, 1);
+      let pixelRatio = window.devicePixelRatio / pageZoomFactor;
       return _.round(pixelRatio, 2);
     }
 
@@ -90,7 +93,9 @@ export let screen = {
       return cfg.screen.pixelRatio;
     }
 
-    let pixelRatio = window.devicePixelRatio / cfg.page.zoomFactor;
+    // not using pageCoords.zoomFactor() to avoid circular dependency
+    let pageZoomFactor = _.defaultTo(cfg.page.zoomFactor, 1);
+    let pixelRatio = window.devicePixelRatio / pageZoomFactor;
     return _.round(pixelRatio, 2);
   }),
 
