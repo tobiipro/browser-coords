@@ -157,11 +157,11 @@ export let init = function() {
 
 export {
   cfg,
+  screenCoords as screen,
+  windowCoords as window,
   clientCoords as client,
   pageCoords as page,
-  screenCoords as screen,
-  screenToClient,
-  windowCoords as window
+  screenToClient
 };
 
 export default exports;
