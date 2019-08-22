@@ -61,7 +61,7 @@ export let guestimateZoomPercentile = function({
     } : acc;
   }, {
     abs: Number.MAX_VALUE,
-    zoom: exports.page._zoom
+    zoom: 100
   }).zoom;
 
   return closestZoom;
