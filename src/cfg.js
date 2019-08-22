@@ -2,10 +2,10 @@ export let cfg = {
   throttle: undefined,
 
   screen: {
-    // e.g. set via external means, otherwise this will be guestimated
+    // NOTE set via external means, otherwise guestimated
     osZoomFactor: undefined,
 
-    // e.g. set via external means, otherwise this will be guestimated
+    // NOTE set via external means, otherwise guestimated
     pixelRatio: undefined
   },
 
@@ -18,15 +18,13 @@ export let cfg = {
   },
 
   client: {
-    // e.g. this will be guestimated automatically in the top window,
-    // but it has to be set by the caller in iframes
+    // NOTE set via external means, otherwise guestimated (top window only)
     x: undefined,
     y: undefined
   },
 
   page: {
-    // Page zoom set by user
-    // E.g. retrieve this from a WebExtension
+    // NOTE a WebExtension can retrieve the user's page zoom
     zoomFactor: undefined
   }
 };
