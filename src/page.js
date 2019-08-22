@@ -19,8 +19,8 @@ export let toJSON = function() {
   });
 };
 
-// page relative to window (top frame) | in device px
-// aka layout viewport, document
+// page aka layout viewport, document
+// coordinates in device px relative to window (top frame)
 export let page = {
   x: function() {
     return client.x() - client.scroll.x();

@@ -22,7 +22,8 @@ export let toJSON = function() {
   });
 };
 
-// window relative to current screen | in device px
+// window
+// coordinates in device px relative to current screen
 export let window2 = {
   x: shouldThrottle(function() {
     return window.screenX * screen.osZoomFactor();

@@ -8,6 +8,7 @@
   cfg,
 
   // current screen
+  // coordinates in device px
   screen: {
     width,
     height,
@@ -19,7 +20,7 @@
   },
 
   // browser window
-  // coordinates relative to screen
+  // coordinates in device px relative to screen
   window: {
     x,
     y,
@@ -30,8 +31,8 @@
     borderSize // Windows
   },
 
-  // client/visual-viewport/viewport/client-area of the top/iframe
-  // coordinates relative to browser window
+  // client aka visual-viewport/viewport/client-area of the top/iframe
+  // coordinates in device px relative to browser window
   client: {
     x,
     y,
@@ -40,9 +41,9 @@
 
     scroll: {x, y}
   },
-  
-  // page/layout-viewport/document
-  // coordinates relative to browser window
+
+  // page aka layout-viewport/document
+  // coordinates in device px relative to browser window
   page: {
     x,
     y,
