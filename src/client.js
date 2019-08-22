@@ -14,6 +14,7 @@ export let toJSON = function() {
     width: client.width(),
     height: client.height(),
 
+    isIframe: client.isIframe(),
     scroll: roundRect({
       x: client.scroll.x(),
       y: client.scroll.y()
@@ -38,6 +39,10 @@ export let client = {
 
   height: shouldThrottle(function() {
     return window.innerHeight * screen.osZoomFactor();
+  }),
+
+  isIframe: shouldThrottle(function() {
+    return window !== window.top;
   }),
 
   scroll: {

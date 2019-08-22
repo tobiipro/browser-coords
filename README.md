@@ -39,6 +39,7 @@
     width,
     height,
 
+    isIframe,
     scroll: {x, y}
   },
 
