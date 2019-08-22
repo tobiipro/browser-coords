@@ -63,11 +63,11 @@ export let screen = {
 
   orientation: {
     angle: shouldThrottle(function() {
-      return window.screen.orientation.angle;
+      return _.get(window.screen, 'orientation.angle');
     }),
 
     type: shouldThrottle(function() {
-      return window.screen.orientation.type;
+      return _.get(window.screen, 'orientation.type');
     })
   },
 
