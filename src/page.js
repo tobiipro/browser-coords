@@ -20,14 +20,14 @@ export let toJSON = function() {
 };
 
 // page aka layout viewport, document
-// coordinates in device px relative to window (top frame)
+// coordinates in device px relative to client
 export let page = {
   x: function() {
-    return client.x() - client.scroll.x();
+    return 0 - client.scroll.x();
   },
 
   y: function() {
-    return client.y() - client.scroll.y();
+    return 0 - client.scroll.y();
   },
 
   width: shouldThrottle(function() {

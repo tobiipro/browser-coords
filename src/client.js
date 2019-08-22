@@ -21,8 +21,8 @@ export let toJSON = function() {
   });
 };
 
-// client aka visual viewport, viewport, client area
-// coordinates in device px relative to window
+// client aka visual-viewport/viewport/client-area of the top/iframe
+// coordinates in device px relative to browser window
 export let client = {
   x: function() {
     return _.defaultTo(cfg.client.x, 0);

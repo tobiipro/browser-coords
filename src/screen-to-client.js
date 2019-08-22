@@ -8,7 +8,7 @@ import screenCoords from './screen';
 import windowCoords from './window';
 
 // current screen, not virtual screen
-export let screenToClientPage = function(screenXY) {
+export let screenToClient = function(screenXY) {
   let {
     screenX,
     screenY
@@ -28,17 +28,12 @@ export let screenToClientPage = function(screenXY) {
     windowCoords.y() -
     clientCoords.y()) / absoluteZoomFactor);
 
-  let pageX = clientX + _.round(clientCoords.scroll.x() / absoluteZoomFactor);
-  let pageY = clientY + _.round(clientCoords.scroll.y() / absoluteZoomFactor);
-
   _.defaults(screenXY, {
     clientX,
-    clientY,
-    pageX,
-    pageY
+    clientY
   });
 
   return screenXY;
 };
 
-export default screenToClientPage;
+export default screenToClient;

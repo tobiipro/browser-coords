@@ -43,7 +43,7 @@
   },
 
   // page aka layout-viewport/document
-  // coordinates in device px relative to browser window
+  // coordinates in device px relative to client
   page: {
     x,
     y,
@@ -138,9 +138,9 @@ let someCoords = {
   screenX: 100,
   screenY: 100
 };
-browser.screenToClientPage(someCoords);
+browser.screenToClient(someCoords);
 // someCoords now has extra properties
-// clientX, clientY, pageX, pageY
+// clientX, clientY
 
 ```
 
