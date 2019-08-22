@@ -51,6 +51,7 @@
     width,
     height,
 
+    url,
     zoomFactor
   }
 }
