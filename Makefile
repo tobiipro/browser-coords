@@ -13,7 +13,7 @@ include support-firecloud/repo/mk/js.publish.npg.mk
 
 SF_VENDOR_FILES_IGNORE := \
 	$(SF_VENDOR_FILES_IGNORE) \
-	-e "^docs/demo.browserify.js" \
+	-e "^docs/.\+\.browserify\.js" \
 
 SF_ECLINT_FILES_IGNORE := \
 	$(SF_ECLINT_FILES_IGNORE) \
@@ -25,11 +25,12 @@ SF_ESLINT_FILES_IGNORE := \
 
 SF_BUILD_TARGETS := \
 	$(SF_BUILD_TARGETS) \
+	docs/play.browserify.js \
 	docs/demo.browserify.js \
 
 BROWSERIFY = $(call npm-which,BROWSERIFY,browserify)
 
 # ------------------------------------------------------------------------------
 
-docs/demo.browserify.js: docs/demo.js
+docs/%.browserify.js: docs/%.js
 	$(BROWSERIFY) $< -o $@
