@@ -15,6 +15,8 @@ SF_BUILD_TARGETS := \
 	$(SF_BUILD_TARGETS) \
 	priv/demo.browserify.js
 
+BROWSERIFY = $(call npm-which,BROWSERIFY,browserify)
+
 # ------------------------------------------------------------------------------
 
 priv/demo.browserify.js: priv/demo.js
