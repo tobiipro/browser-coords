@@ -70,7 +70,7 @@
 
 ## Example
 
-See the [demo code](priv/demo.js).
+See the [demo code](docs/demo.js).
 
 
 ## `window.devicePixelRatio`
@@ -92,7 +92,7 @@ The only way to get the real value is via a WebExtension
 and the [tabs.getZoom()](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/getZoom) API.
 
 **NOTE** It is close to impossible to get the page zoom from within the web page,
-but [priv/guess-zoom-percentile.js](priv/guess-zoom-percentile.js) is a proof of concept to guess it.
+but [docs/guess-zoom-percentile.js](docs/guess-zoom-percentile.js) is a proof of concept to guess it.
 
 If you are on OSX, that might be enough, but if you're on Windows, read on.
 
