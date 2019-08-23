@@ -70,7 +70,8 @@
 
 ## Example
 
-See the [demo code](docs/demo.js).
+See the [demo](https://tobiipro.github.io/browser-coords/demo.html)
+and/or the [demo code](docs/demo.js).
 
 
 ## `window.devicePixelRatio`
