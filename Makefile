@@ -14,7 +14,7 @@ include support-firecloud/repo/mk/core.misc.release.npg.mk
 BROWSERIFY = $(call npm-which,BROWSERIFY,browserify)
 
 SF_VENDOR_FILES_IGNORE += \
-	-e "^docs/.\+\.browserify\.js" \
+	-e "^docs/.\+\.browserify\.js$$" \
 
 SF_BUILD_TARGETS += \
 	docs/play.browserify.js \
