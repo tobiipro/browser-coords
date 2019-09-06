@@ -3,7 +3,7 @@ import cfg from './cfg';
 import clientCoords from './client';
 import pageCoords from './page';
 import screenCoords from './screen';
-import screenToClient from './screen-to-client';
+import screenToClientPage from './screen-to-client-page';
 import windowCoords from './window';
 
 import {
@@ -157,11 +157,14 @@ export let init = function() {
 
 export {
   cfg,
+
   screenCoords as screen,
   windowCoords as window,
   clientCoords as client,
   pageCoords as page,
-  screenToClient
+
+  screenToClientPage,
+  screenToClientPage as screenToClient // backward compat
 };
 
 export default exports;
