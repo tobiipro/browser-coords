@@ -32,8 +32,8 @@ if (window === window.top) {
       window: browserCoords.window.cfg,
       client: {
         ...browserCoords.client.cfg,
-        x: nestedIframe.getBoundingClientRect().left,
-        y: nestedIframe.getBoundingClientRect().top
+        x: browserCoords.client.x() + nestedIframe.getBoundingClientRect().left,
+        y: browserCoords.client.y() + nestedIframe.getBoundingClientRect().top
       }
     };
     nestedIframe.contentWindow.postMessage(iframeCfg, '*');
