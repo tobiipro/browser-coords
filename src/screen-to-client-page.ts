@@ -7,8 +7,20 @@ import pageCoords from './page';
 import screenCoords from './screen';
 import windowCoords from './window';
 
+type ScreenXY = {
+  screenX: number;
+  screenY: number;
+}
+
+type ClientPageXY = {
+  clientX: number;
+  clientY: number;
+  pageX: number;
+  pageY: number;
+}
+
 // current screen, not virtual screen
-export let screenToClientPage = function({screenX, screenY}) {
+export let screenToClientPage = function({screenX, screenY}: ScreenXY): ClientPageXY {
   let pageZoomFactor = pageCoords.zoomFactor();
   let screenOsZoomFactor = screenCoords.osZoomFactor();
   let absoluteZoomFactor = pageZoomFactor * screenOsZoomFactor;

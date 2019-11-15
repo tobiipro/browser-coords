@@ -21,9 +21,12 @@
     "@babel/cli": "^7.2.0",
     "@babel/core": "^7.2.0",
     "@babel/node": "^7.2.0",
+    "@babel/preset-typescript": "^7.6.0",
     "@babel/register": "^7.0.0",
     "@babel/runtime": "^7.2.0",
     "@getify/eslint-plugin-proper-arrows": "^8.0.1",
+    "@typescript-eslint/eslint-plugin": "^2.6.0",
+    "@typescript-eslint/parser": "^2.6.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.3",
     "babel-preset-firecloud": "git://github.com/tobiipro/babel-preset-firecloud.git#semver:~0.2.2",
@@ -42,7 +45,8 @@
     "eslint-plugin-lodash": "^6.0.0",
     "eslint-plugin-max-len-2": "^0.0.5",
     "eslint-plugin-no-null": "^1.0.2",
-    "npm-publish-git": "git://github.com/andreineculau/npm-publish-git.git#semver:~0.0.8"
+    "npm-publish-git": "git://github.com/andreineculau/npm-publish-git.git#semver:~0.0.8",
+    "typescript": "^3.7.2"
   },
   "scripts": {
     "prepare": "make package-json-prepare"

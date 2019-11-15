@@ -1,31 +1,31 @@
 export let cfg = {
-  throttle: undefined,
+  throttle: undefined as number,
 
   screen: {
     // NOTE set via external means, otherwise guestimated
-    osZoomFactor: undefined,
+    osZoomFactor: undefined as number,
 
     // NOTE set via external means, otherwise guestimated
-    pixelRatio: undefined
+    pixelRatio: undefined as number
   },
 
   window: {
-    borderSize: undefined,
+    borderSize: undefined as number,
     viewport: {
-      x: undefined,
-      y: undefined
+      x: undefined as number,
+      y: undefined as number
     }
   },
 
   client: {
     // NOTE set via external means, otherwise guestimated (top window only)
-    x: undefined,
-    y: undefined
+    x: undefined as number,
+    y: undefined as number
   },
 
   page: {
     // NOTE a WebExtension can retrieve the user's page zoom
-    zoomFactor: undefined
+    zoomFactor: undefined as number
   }
 };
 

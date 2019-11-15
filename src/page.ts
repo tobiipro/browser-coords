@@ -8,6 +8,7 @@ import {
   shouldThrottle
 } from './util';
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export let toJSON = function() {
   return roundRect({
     cfg: page.cfg,

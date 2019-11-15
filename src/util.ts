@@ -1,7 +1,20 @@
 import _ from 'lodash-firecloud';
 import cfg from './cfg';
 
-export let roundRect = function(obj, precision) {
+import {
+  Fn
+} from 'lodash-firecloud/types';
+
+type Rect = {
+  x: number;
+  y: number;
+  left: number;
+  top: number;
+  width: number;
+  height: number;
+}
+
+export let roundRect = function<T extends Partial<Rect>>(obj: T, precision?: number): T {
   let keys = [
     'x',
     'y',
@@ -12,7 +25,7 @@ export let roundRect = function(obj, precision) {
   ];
 
   _.forEach(keys, function(key) {
-    if (!obj[key]) {
+    if (_.isUndefined(obj[key])) {
       return;
     }
     obj[key] = _.round(obj[key], precision);
@@ -21,16 +34,17 @@ export let roundRect = function(obj, precision) {
   return obj;
 };
 
-export let throttle = function(fn) {
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+export let throttle = function<T extends Fn>(fn: T) {
   let interval = _.defaultTo(cfg.throttle, 0);
-  let throttledFn = _.onceIn(fn, interval);
-  throttledFn.now = fn;
+  let throttledFn = _.throttleTrue(fn, interval);
   return throttledFn;
 };
 
-export let shouldThrottle = function(fn) {
-  fn.shouldThrottle = true;
-  return fn;
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+export let shouldThrottle = function<T extends Fn>(fn: T) {
+  let shouldThrottleFn = _.assign(fn, {
+    shouldThrottle: true
+  });
+  return shouldThrottleFn;
 };
-
-export default exports;

@@ -10,6 +10,17 @@ import {
   throttle
 } from './util';
 
+import {
+  Fn
+} from 'lodash-firecloud/types';
+
+declare global {
+  interface Window {
+    mozInnerScreenX?: number;
+    mozInnerScreenY?: number;
+  }
+}
+
 let _passive = {
   capture: true,
   passive: true
@@ -28,9 +39,10 @@ let _touchEventNames = [
 
 // -----------------------------------------------------------------------------
 
-let _setClient = function({
-  x, y
-}) {
+let _setClient = function({x, y}: {
+  x?: number;
+  y?: number;
+}): void {
   if (_.isDefined(x)) {
     cfg.client.x = x;
     cfg.window.viewport.x = x;
@@ -42,12 +54,12 @@ let _setClient = function({
   }
 };
 
-let _guestimateClientX = function() {
+let _guestimateClientX = function(): void {
   let x = windowCoords.borderSize() / 2;
   _setClient({x});
 };
 
-let _guestimateClientY = function() {
+let _guestimateClientY = function(): void {
   // Until the first mouse/touch event we can only guestimate.
   // A rough estimate with/out a bookmark toolbar is ~100/75px in popular browsers
   // with no developer tools, no status bar
@@ -68,7 +80,7 @@ let _guestimateClientY = function() {
   _setClient({y});
 };
 
-let _onMouseEvent = function(e) {
+let _onMouseEvent = function(e: MouseEvent | TouchEvent['touches'][0]): void {
   if (_.isDefined(window.mozInnerScreenX)) {
     let x = window.mozInnerScreenX;
     let y = window.mozInnerScreenY;
@@ -99,12 +111,12 @@ let _onMouseEvent = function(e) {
   _setClient({x, y});
 };
 
-let _onTouchEvent = function(e) {
+let _onTouchEvent = function(e: TouchEvent): void {
   // not 100% correct, but we're only interested in clientXY and screenXY
   _onMouseEvent(e.touches[0]);
 };
 
-let _maybeGuestimateClientXY = function() {
+let _maybeGuestimateClientXY = function(): void {
   // for iframes, this information needs to be guestimated via different means
   if (window !== window.top) {
     return;
@@ -116,6 +128,7 @@ let _maybeGuestimateClientXY = function() {
 
   // more accurate method, requires at least one mouse/touch event
   _.forEach(_mouseEventNames, function(eventName) {
+    // @ts-ignore
     window.addEventListener(
       eventName,
       throttle(_onMouseEvent),
@@ -132,7 +145,9 @@ let _maybeGuestimateClientXY = function() {
   });
 };
 
-let _maybeThrottle = function(maybeShouldThrottleFn) {
+let _maybeThrottle = function<T extends Fn & {
+  shouldThrottle?: boolean
+}>(maybeShouldThrottleFn: T): (T & _.Cancelable) | T {
   if (maybeShouldThrottleFn.shouldThrottle) {
     return throttle(maybeShouldThrottleFn);
   }
@@ -142,7 +157,7 @@ let _maybeThrottle = function(maybeShouldThrottleFn) {
 
 // -----------------------------------------------------------------------------
 
-export let init = function() {
+export let init = function(): void {
   _.forEach([
     clientCoords,
     pageCoords,
@@ -167,4 +182,15 @@ export {
   screenToClientPage as screenToClient // backward compat
 };
 
-export default exports;
+// export default exports;
+export default {
+  cfg,
+
+  screen: screenCoords,
+  window: windowCoords,
+  client: clientCoords,
+  page: pageCoords,
+
+  screenToClientPage,
+  screenToClient: screenToClientPage // backward compat
+};
