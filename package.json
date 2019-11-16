@@ -9,7 +9,8 @@
     "/BUILD",
     "/LICENSE",
     "/VERSION",
-    "/index.js",
+    "/*.js",
+    "/*.d.ts",
     "/src/",
     "/lib/"
   ],
