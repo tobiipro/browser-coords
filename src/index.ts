@@ -146,7 +146,7 @@ let _maybeGuestimateClientXY = function(): void {
 };
 
 let _maybeThrottle = function<T extends Fn & {
-  shouldThrottle?: boolean
+  shouldThrottle?: boolean;
 }>(maybeShouldThrottleFn: T): (T & _.Cancelable) | T {
   if (maybeShouldThrottleFn.shouldThrottle) {
     return throttle(maybeShouldThrottleFn);

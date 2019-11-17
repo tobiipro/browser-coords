@@ -12,7 +12,7 @@ type Rect = {
   top: number;
   width: number;
   height: number;
-}
+};
 
 export let roundRect = function<T extends Partial<Rect>>(obj: T, precision?: number): T {
   let keys = [

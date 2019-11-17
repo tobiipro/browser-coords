@@ -10,14 +10,14 @@ import windowCoords from './window';
 type ScreenXY = {
   screenX: number;
   screenY: number;
-}
+};
 
 type ClientPageXY = {
   clientX: number;
   clientY: number;
   pageX: number;
   pageY: number;
-}
+};
 
 // current screen, not virtual screen
 export let screenToClientPage = function({screenX, screenY}: ScreenXY): ClientPageXY {
